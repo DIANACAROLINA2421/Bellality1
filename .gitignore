@@ -1,0 +1,7 @@
+AngularTemplate/.idea/
+AngularTemplate/node_modules/
+AngularTemplate/.env
+
+Django1/.venv/
+Django1/.idea/
+Django1/.env
