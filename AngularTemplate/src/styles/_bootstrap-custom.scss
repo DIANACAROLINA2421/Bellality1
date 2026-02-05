@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use '../../public/icons/bootstrap-icons.css';
 @use './variables' as *;
 @use "bootstrap/scss/bootstrap" as bs with (
   $primary: $primary,

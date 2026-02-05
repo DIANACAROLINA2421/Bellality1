@@ -1,0 +1,69 @@
+.iconos-compra{
+  color: #1e1e1e;
+  font-size: 25px;
+  margin-right: 20px;
+
+}
+
+.letras{
+  color: #1e1e1e;
+  font-size: 20px;
+  margin-top: 20px;
+}
+.letras:hover{
+color: green;
+}
+.contenedor{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.btn-img {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  background-color: #66BB6A;
+  opacity: 0.8;
+  border-radius: 60px;
+}
+.btn-img:hover{
+  background-color: white;
+}
+.texto{
+  position: absolute;
+  top:64%;
+  left:10%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color: #e2ecec;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: "Baskerville Old Face";
+  text-shadow:2px 2px 5px rgba(0,0,0,0.5);
+}
+.texto2{
+  position: absolute;
+  top:70%;
+  left:10%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color: #e2ecec;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Baskerville Old Face";
+  text-shadow:2px 2px 5px rgba(0,0,0,0.5);
+}
+.texto3 {
+  position: absolute;
+  top: 72%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #e2ecec;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Baskerville Old Face";
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
