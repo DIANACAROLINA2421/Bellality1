@@ -1,4 +1,4 @@
-<header class="container-fluid p-0">
+<header class=" a container-fluid p-0">
     <div class="d-flex flex-row justify-content-between container-fluid"> <!--primera fila-->
         <div class="d-flex flex-row gap-3">
 
@@ -13,7 +13,7 @@
             <div class="  d-flex flex-row gap-4">
 
                 <div class="d-flex flex-row gap-1 ">
-                    <p class=" letras">Home</p>
+                    <button type="button" class="letras" >Home</button>
 
                 </div>
 
@@ -27,10 +27,7 @@
 
                 </div>
 
-                <div class="letras d-flex flex-row gap-1 c-naranja" >
-                    <p>Blog</p>
 
-                </div>
 
                 <div class="letras d-flex flex-row gap-1 c-naranja">
                     <p>Page</p>
@@ -49,7 +46,8 @@
             </div>
 
             <div class="d-flex flex-row gap-1">
-                <i class=" iconos-compra bi bi-person-fill"></i>
+                <button> <i class=" iconos-compra bi bi-person-fill"routerLink="/login"></i></button>
+
 
             </div>
 
@@ -67,17 +65,137 @@
 
     <div class=" contenedor container-fluid">
 
-            <img src="/images/cabecera.jpg" alt="" class=" imagen mb-5 ">
+        <div class="im-cabecera">
+            <img src="/images/img_1.png" alt="" class=" imagen mb-5 ">
+            <img src="/images/img_1.png" alt="" class=" imagen mb-5 ">
+            <img src="/images/img_1.png" alt="" class=" imagen mb-5 ">
+            <img src="/images/img_1.png" alt="" class=" imagen mb-5 ">
+        </div>
 
-            <div class="btn-img">
-                <button class="btn">Read Now</button>
+        <div class="texto-cabecera">
+            <button class="btn-cabecera"routerLink="/blog">Read Now</button>
+            <p class="texto">Morning Clarity</p>
+            <p class="texto2">Star your day With intention. Simple,effective skincare for a </p>
+            <p class="texto3">balanced mind and body</p>
+        </div>
+        <div>
+       <span>
+           <hr class="o">
+       </span>
+        </div>
+        <div class="categorias-container py-4 ">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="fw-bold">All Category:</h3>
             </div>
-        <p class="texto">Morning Clarity</p>
-        <p class="texto2">Star your day With intention. Simple,effective skincare for a </p>
-        <p class="texto3">balanced mind and body</p>
+        </div>
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <div class="category-card text-center p-3 rounded shadow-sm rounded-5" routerLink="/cuidado-facial">
+                    <img src="/images/f.jpg" alt="" class=" categorias-img mb-5 ">
+                    <p class="letr fw-bold">Cuidado facial <i class="i bi bi-droplet"></i></p>
+                </div>
+
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="category-card text-center p-3 rounded shadow-sm rounded-5" routerLink="/4784567">
+                    <img src="/images/f2.jpg" alt="" class=" categorias-img  mb-5 ">
+                    <p class="letr fw-bold">Maquillaje <i class="i bi bi-bluesky"></i></p>
+                </div>
+
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="category-card text-center p-3 rounded shadow-sm rounded-5" routerLink="/cuidado-capilar">
+
+                    <img src="/images/f3.jpg" alt="" class=" categorias-img  mb-5 ">
+
+                    <p class="letr fw-bold">Cuidado Capilar <i class="i bi bi-brightness-high"></i></p>
+                </div>
+
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="category-card text-center p-3 rounded shadow-sm rounded-5 " routerLink="/cuidado-corporal">
+
+                    <img src="/images/f4.jpg" alt="" class=" categorias-img mb-5 ">
+
+                    <p class="letr fw-bold">Cuidado Corporal <i class=" i bi bi-person-arms-up"></i></p>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <div>
-        
+
+    <hr class="o">
+
+    <div class=" all d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-bold">Products with a discount:</h3>
     </div>
+
+    <!--------otra parte-------->
+
+    <div class="row g-3 justify-content-center">
+
+        <div class="col-6 col-md-3">
+            <div class="texto-foto">
+
+                <p class="texto4">-30%</p>
+            </div>
+            <div class=" text-center p-3 rounded shadow-sm rounded-5 product-car product-car " >
+                <img src="/images/creamcara.jpg" alt="" class=" categorias-imge mb-5 ">
+                <h3 class="produ-titulo">Base de Maquillaje oil almendras</h3>
+                <p class="produ-desc">
+                    Base de maquillaje diferentes tonos, con un toque floral, aceite de almendras rico en vitaminas
+                </p>
+                <p><s>25.50€</s></p> <p class="text-danger">17.85€</p>
+
+                <button class="comprar-ya">¡Buy Now!</button>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-md-3">
+            <div class="texto-foto">
+
+                <p class="texto4">-30%</p>
+            </div>
+            <div class=" text-center p-3 rounded shadow-sm rounded-5">
+                <img src="/images/kit.jpg" alt="" class=" categorias-imge mb-5 product-car">
+                <h3 class="produ-titulo">Base de Maquillaje oil almendras</h3>
+                <p class="produ-desc">
+                    Base de maquillaje diferentes tonos, con un toque floral, aceite de almendras rico en vitaminas
+                </p>
+                <p><s>49.99€</s></p> <P class="text-danger">34.99€</P>
+
+                <button class="comprar-ya">¡Buy Now!</button>
+
+            </div>
+
+        </div>
+
+        <div class="col-6 col-md-3">
+            <div class="texto-foto">
+
+                <p class="texto4">-30%</p>
+            </div>
+            <div class=" text-center p-3 rounded shadow-sm rounded-5" >
+                <img src="/images/piel.jpg" alt="" class=" categorias-imge mb-5 product-car ">
+                <h3 class="produ-titulo">Base de Maquillaje oil almendras</h3>
+                <p class="produ-desc">
+                    Base de maquillaje diferentes tonos, con un toque floral, aceite de almendras rico en vitaminas
+                </p>
+                <p><s>25.50€</s></p> <p class="text-danger"> 17.85€</p>
+
+                <button class="comprar-ya">¡Buy Now!</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
 
 </header>

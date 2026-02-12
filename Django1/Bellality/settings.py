@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # Aplicaciones que vayamos creando
     'Users',
+    'Productos'
 ]
 
 SIMPLE_JWT = {
@@ -136,7 +137,7 @@ STATICFILES_DIRS = [ASSETS_DIR / 'static']
 STATIC_ROOT = ASSETS_DIR / 'collected_static'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = ASSETS_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTHENTICATION_BACKENDS = [
     #"Users.backend.EmailOrPhoneBackend",
