@@ -7,6 +7,32 @@ export const routes: Routes = [
         loadComponent: () => import('./layouts/main-layouts/main-layouts').then(m => m.MainLayouts),
         title: "inicio",
 
+        children: [
+            {
+                path: '',
+                loadComponent: () => import('./features/inicio/inicio').then(m => m.Inicio),
+                title: "inicio",
+
+
+            },
+
+            {
+                path: 'blog',
+                loadComponent: () => import('./features/blog/blog').then(m => m.Blog),
+                title: "blog",
+
+
+            },
+            {
+                path: 'productos',
+                loadComponent: () => import('./features/productos/productos').then(m => m.Productos),
+                title: "productos",
+
+
+            },
+
+
+        ]
     },
     {
         path: 'login',
@@ -17,20 +43,12 @@ export const routes: Routes = [
     },
     {
         path: 'register',
-        loadComponent:()=>import('./features/auth/register/register').then(m => m.Register),
-        title:"register",
-
-
-
-    },
-    {
-        path: 'blog',
-        loadComponent:()=>import('./features/blog/blog').then(m => m.Blog),
-        title:"blog",
-
+        loadComponent: () => import('./features/auth/register/register').then(m => m.Register),
+        title: "register",
 
 
     },
-
-
 ];
+
+
+
