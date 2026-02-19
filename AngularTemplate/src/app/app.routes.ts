@@ -30,6 +30,20 @@ export const routes: Routes = [
 
 
             },
+            {
+                path: 'carrito',
+                loadComponent: () => import('./features/carrito/carrito').then(m => m.Carrito),
+                title: "carrito",
+
+
+            },
+            {
+                path: 'sobreNosotros',
+                loadComponent: () => import('./features/about/about').then(m => m.About),
+                title: "sobreNosotros",
+
+
+            },
 
 
         ]

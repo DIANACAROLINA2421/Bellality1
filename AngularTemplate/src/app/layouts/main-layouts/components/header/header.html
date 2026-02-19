@@ -1,5 +1,5 @@
 <header class=" a container-fluid p-0">
-    <div class="d-flex flex-row justify-content-between container-fluid"> <!--primera fila-->
+    <div class="d-flex flex-row justify-content-between container-fluid mb-3"> <!--primera fila-->
         <div class="d-flex flex-row gap-3">
 
             <div class="d-flex flex-row gap-1">
@@ -12,25 +12,26 @@
 
             <div class="  d-flex flex-row gap-4">
 
-                <div class="d-flex flex-row gap-1 ">
-                    <button type="button" class="letras"routerLink="/">Home</button>
+                <div class="letras d-flex flex-row gap-1 ">
+                    <button class="letras btn"routerLink="/">Home</button>
 
                 </div>
 
-                <div class=" letras d-flex flex-row gap-1 c-naranja">
-                    <p>Shop</p>
+                <div class=" letras d-flex flex-row gap-1">
+                    <button  class=" letras btn"routerLink="/carrito">Shop</button>
 
                 </div>
+
+                <div class="letras d-flex flex-row gap-1 ">
+                    <button  class="letras btn "routerLink="/productos">Product</button>
+
+
+                </div>
+
+
 
                 <div class="letras d-flex flex-row gap-1 c-naranja">
-                    <p>Product</p>
-
-                </div>
-
-
-
-                <div class="letras d-flex flex-row gap-1 c-naranja">
-                    <p>Page</p>
+                    <button class="letras btn  "routerLink="/sobreNosotros">About Us</button>
 
                 </div>
 
@@ -41,23 +42,17 @@
         <div class=" iconos-compra d-flex flex-row gap-3 text-secondary mt-5">
 
             <div class="d-flex flex-row gap-1">
-                <i class="iconos-compra bi bi-search"></i>
+                <button class="btn mi"> <i class=" iconos-compra bi bi-person-fill"routerLink="/login"></i></button>
 
             </div>
+
 
             <div class="d-flex flex-row gap-1">
-                <button> <i class=" iconos-compra bi bi-person-fill"routerLink="/login"></i></button>
-
-
-            </div>
-
-            <div class="d-flex flex-row gap-1">
-                <i class=" iconos-compra bi bi-cart"></i>
-                <div class="c-naranja d-flex flex-row">
-
-                </div>
+                <button class="btn mi "> <i class=" iconos-compra bi bi-cart"routerLink="/carrito"></i></button>
 
             </div>
+
+
         </div>
     </div>
 
