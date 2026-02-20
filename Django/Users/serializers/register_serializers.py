@@ -6,8 +6,8 @@ from Users.models import CustomUser
 class RegisterSerializer(serializers.ModelSerializer):
     nombre=serializers.CharField(max_length=50,required=True)
     email=serializers.EmailField(max_length=100,required=True)
-    password1=serializers.CharField( max_length=6,required=True)
-    password2=serializers.CharField(max_length=6,required=True)
+    password1=serializers.CharField( min_length=6,required=True)
+    password2=serializers.CharField(min_length=6,required=True)
 
 
     class Meta:
@@ -40,7 +40,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             email=validated_data["email"],
             nombre=validated_data["nombre"],
         )
-        user.set_password(validated_data["password"])
+        user.set_password(password)
         user.save()
         return user
 

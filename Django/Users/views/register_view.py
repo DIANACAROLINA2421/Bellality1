@@ -14,6 +14,7 @@ class RegisterView(APIView):
         register_serializers=RegisterSerializer(data=request.data, many=False)
 
         if register_serializers.is_valid():
+            register_serializers.save()
             return Response(register_serializers.validated_data,status=status.HTTP_201_CREATED)
         else:
             return Response(register_serializers.errors,status=status.HTTP_401_UNAUTHORIZED)

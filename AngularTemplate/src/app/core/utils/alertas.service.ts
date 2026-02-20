@@ -25,11 +25,14 @@ export class AlertasService {
             confirmText: string = "¿Esta seguro?",
             cancelText: string = "Cancelar",
             icon: "warning" | "info" | "error" | "success"): void {
+
+
     }
 
     alert(title: string,
           description: string,
-          icon: "warning" | "info" | "error" | "success"): void {
+          icon: "warning" | "info" | "error" | "success"
+          ): void {
 
         Swal.fire({
             title: title,
@@ -37,7 +40,7 @@ export class AlertasService {
             icon: icon,
             showConfirmButton: true,
             allowOutsideClick: true,
-            confirmButtonText: "Cerrar notificación"
+            confirmButtonText: "cerrar"
         })
     }
 

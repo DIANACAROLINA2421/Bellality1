@@ -8,8 +8,7 @@ from Users.serializers.login_serializers import LoginSerializer
 
 
 class LoginView(APIView):
-    permission_classes = [AllowAny] #si quiero que este identificado el que me vahacer la consulta en allowAny es cualquiera
-
+    permission_classes = [AllowAny]
     def post(self, request):
 
         login_serializer=LoginSerializer(data=request.data,many = False)

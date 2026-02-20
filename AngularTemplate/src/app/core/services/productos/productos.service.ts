@@ -28,5 +28,9 @@ export class ProductsService {
     }
 
 
+    deleteProducto(id: number) {
+        return this.http.delete<any>(`${this.URL}/productos/${id}`);
+    }
+
 }
 

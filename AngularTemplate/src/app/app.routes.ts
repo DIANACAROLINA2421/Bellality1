@@ -44,6 +44,13 @@ export const routes: Routes = [
 
 
             },
+            {
+                path: 'pasarela',
+                loadComponent: () => import('./features/pasarela/pasarela').then(m => m.Pasarela),
+                title: "pasarela",
+
+
+            },
 
 
         ]

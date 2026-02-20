@@ -1,7 +1,8 @@
 import {
   BrowserModule,
   DomRendererFactory2
-} from "./chunk-BWOHDWYJ.js";
+} from "./chunk-AY3RT4OX.js";
+import "./chunk-VUM7Y5PL.js";
 import "./chunk-R6U7IGMG.js";
 import {
   ANIMATION_MODULE_TYPE,
@@ -12,15 +13,17 @@ import {
   NgZone,
   RendererFactory2,
   RuntimeError,
-  __objRest,
-  __spreadValues,
   performanceMarkFeature,
   setClassMetadata,
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-75V7EJED.js";
+} from "./chunk-UUO4IDRY.js";
+import {
+  __objRest,
+  __spreadValues
+} from "./chunk-GOMI4DH3.js";
 
 // node_modules/@angular/animations/fesm2022/private_export.mjs
 var AnimationMetadataType;

@@ -31,7 +31,7 @@ class LoginSerializer(serializers.ModelSerializer):
         email = data.get("email")
         password = data.get("password")
 
-        user = CustomUser.objects.get(email=email).first()
+        user = CustomUser.objects.filter(email=email).first()
         if not user:
             raise serializers.ValidationError("El usuario no existe")
 
