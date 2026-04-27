@@ -1,22 +1,53 @@
-import {Component, inject} from '@angular/core';
-import {Router, RouterLink} from "@angular/router";
-import {AlertasService} from "../../core/utils/alertas.service";
+import { Component, inject } from '@angular/core';
+import { RouterLink } from "@angular/router";
+import { CarritoService} from "../../core/services/carrito/carrito.service";
+import { AlertasService } from "../../core/utils/alertas.service";
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-carrito',
-    imports: [
-        RouterLink
-    ],
+    standalone: true,
+    imports: [RouterLink, CommonModule, FormsModule],
     templateUrl: './carrito.html',
     styleUrl: './carrito.scss',
 })
 export class Carrito {
-    private alertService = inject(AlertasService)
-    private router = inject(Router);
+    public carritoService = inject(CarritoService);
+    private alertService = inject(AlertasService);
 
+    // Signals del servicio
+    items = this.carritoService.items;
+    subtotal = this.carritoService.subtotal;
+    iva = this.carritoService.iva;
+    total = this.carritoService.total;
+    descuento = this.carritoService.descuento;
 
-    eliminar() {
+    cuponCodigo: string = '';
 
-        this.alertService.alert('Alerta', 'Seguro desea eliminar el producto', 'warning')
+    confirmarEliminar(nombre: string) {
+        this.alertService.alert('Eliminar', '¿Seguro desea eliminar el producto?', 'warning');
+        this.carritoService.eliminar(nombre);
+    }
+
+    cambiarCantidad(nombre: string, evento: any) {
+        const valor = parseInt(evento.target.value);
+        if(!isNaN(valor)) {
+            this.carritoService.actualizarCantidad(nombre, valor);
+        }
+    }
+
+    aplicarCupon() {
+        if (!this.cuponCodigo.trim()) {
+            this.alertService.alert('Error', 'Introduce un código válido', 'error');
+            return;
+        }
+        
+        const exito = this.carritoService.aplicarCupon(this.cuponCodigo.trim().toUpperCase());
+        if (exito) {
+            this.alertService.alert('Éxito', 'Cupón aplicado correctamente', 'success');
+        } else {
+            this.alertService.alert('Error', 'Cupón inválido', 'error');
+        }
     }
 }

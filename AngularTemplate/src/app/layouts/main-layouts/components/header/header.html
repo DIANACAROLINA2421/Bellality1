@@ -39,17 +39,21 @@
 
         </div>
 
-        <div class=" iconos-compra d-flex flex-row gap-3 text-secondary mt-5">
+        <div class=" iconos-compra d-flex flex-row gap-3 text-secondary mt-5 align-items-center">
 
-            <div class="d-flex flex-row gap-1">
-                <button class="btn mi"> <i class=" iconos-compra bi bi-person-fill"routerLink="/login"></i></button>
-
-            </div>
-
+            @if (userName) {
+                <div class="d-flex flex-row gap-2 align-items-center">
+                    <span class="fw-bold text-dark">Hola, {{ userName }}</span>
+                    <button class="btn btn-outline-danger btn-sm" (click)="logout()">Cerrar sesión</button>
+                </div>
+            } @else {
+                <div class="d-flex flex-row gap-1">
+                    <button class="btn mi"> <i class=" iconos-compra bi bi-person-fill"routerLink="/login"></i></button>
+                </div>
+            }
 
             <div class="d-flex flex-row gap-1">
                 <button class="btn mi "> <i class=" iconos-compra bi bi-cart"routerLink="/carrito"></i></button>
-
             </div>
 
 

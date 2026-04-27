@@ -17,5 +17,11 @@ export class LoginServices {
   postLogin(datos:any){
     return this.http.post<any>(`${this.URL}/login/`,datos)
   }
-  
+
+  logout() {
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+        localStorage.removeItem('user');
+        localStorage.removeItem('access_token');
+    }
+  }
 }

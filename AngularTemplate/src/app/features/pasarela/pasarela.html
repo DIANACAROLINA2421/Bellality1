@@ -1,43 +1,53 @@
 <section class="container py-4">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-
             <h3 class="mb-4 fw-bold">Pasarela Pago <i class="bi bi-credit-card"></i></h3>
 
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="alert alert-secondary text-center mb-4">
+                        <span class="d-block small text-uppercase">Total a cargar:</span>
+                        <strong class="fs-3">{{ carritoService.total() | number:'1.2-2' }}€</strong>
+                    </div>
 
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="fw-bold mb-3">Pago </h5>
+                    <h5 class="fw-bold mb-3">Datos de la tarjeta</h5>
 
-                    <form>
+                    <form #formPago="ngForm">
                         <div class="mb-3">
-                            <label class="form-label">Nombre Titular </label>
-                            <input type="text" class="form-control" placeholder="Nombre" required>
+                            <label class="form-label">Nombre Titular</label>
+                            <input type="text" name="titular" [(ngModel)]="datosPago.titular"
+                                   class="form-control" placeholder="Como aparece en la tarjeta" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Numero Cuenta </label>
-                            <input type="text" class="form-control"  placeholder="0000 0000 0000" required>
+                            <label class="form-label">Número de Cuenta</label>
+                            <input type="text" name="numero" [(ngModel)]="datosPago.numero"
+                                   class="form-control" placeholder="0000 0000 0000 0000" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Fecha Expediccion </label>
-                            <input type="date" class="form-control" required>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Fecha Expedición</label>
+                                <input type="date" name="fecha" [(ngModel)]="datosPago.fecha"
+                                       class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">CVC</label>
+                                <input type="text" name="cvc" [(ngModel)]="datosPago.cvc"
+                                       class="form-control" placeholder="***" maxlength="3" required>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">CVC </label>
-                            <input type="text" class="form-control" placeholder="* * *" required>
-                        </div>
 
-
-
-
+                        <button type="button" (click)="confirmar()"
+                                [disabled]="!formPago.valid || carritoService.items().length === 0"
+                                class="btn btn-pagar w-100 fw-bold mt-3 py-3 shadow-sm">
+                            CONFIRMAR Y PAGAR
+                        </button>
                     </form>
-                    <button (click)="confirmar()" class=" btn btn-pagar  w-100  fw-bold">
-                        Pagar
-                    </button>
                 </div>
             </div>
+
+            <p class="text-center mt-3">
+                <a routerLink="/carrito" class="text-muted small text-decoration-none">← Volver al carrito</a>
+            </p>
         </div>
     </div>
 </section>
-
-

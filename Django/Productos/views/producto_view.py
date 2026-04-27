@@ -10,7 +10,12 @@ class ProductoView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-        productos = Productos.objects.filter(is_active=True).order_by("-categoria", "nombre")
+        categoria_slug = request.query_params.get('categoria', None)
+        
+        if categoria_slug:
+            productos = Productos.objects.filter(is_active=True, categoria__slug=categoria_slug).order_by("-categoria", "nombre")
+        else:
+            productos = Productos.objects.filter(is_active=True).order_by("-categoria", "nombre")
 
         data = [
             {

@@ -35,8 +35,14 @@ export class Login {
 
         this.loginService.postLogin(this.loginForm.value).subscribe({
             next: response => {
-                this.alertasService.alert('Bienvenido','Tus Datos son correctos','success')
-                this.router.navigate(['/'])
+                if (response.success) {
+                    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+                        localStorage.setItem('user', JSON.stringify(response.data));
+                        localStorage.setItem('access_token', response.access_token);
+                    }
+                    this.alertasService.alert('Bienvenido','Tus Datos son correctos','success');
+                    this.router.navigate(['/']);
+                }
             }, error: error => {
                 this.alertasService.alert('Error','Datos introduccidos no son validos','error')
                 console.log(error);

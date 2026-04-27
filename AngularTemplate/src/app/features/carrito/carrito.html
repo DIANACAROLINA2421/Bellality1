@@ -1,126 +1,77 @@
 <section class="container py-4">
     <div class="row justify-content-center">
         <div class="col-lg-8">
+            <h3 class="mb-4 fw-bold">Happy Shopping <i class="bi bi-basket2-fill text-primary"></i></h3>
 
-            <h3 class="mb-4 fw-bold">Happy Shopping <i class=" carrito bi bi-basket2-fill"></i></h3>
-
-            <div class="card shadow-sm mb-3">
-                <div class="card-body">
-                    <h5 class="fw-bold mb-3">Carrito</h5>
-
-                    <div class=" d-flex justify-content-between m-b2 ">
-                        <div>
-                            <p class="fw-semibold m-0">Hydrating Vitamin C Serum</p>
-                            <p class="des">30ml .vitamina C+E</p>
+            @for (item of items(); track item.nombre) {
+                <div class="card shadow-sm mb-3 border-0">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="fw-bold m-0">{{ item.nombre }}</p>
+                                <p class="text-muted small m-0">{{ item.descripcion }}</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <input type="number" [value]="item.cantidad"
+                                       (change)="cambiarCantidad(item.nombre, $event)"
+                                       class="form-control form-control-sm me-3" style="width: 65px;">
+                                <p class="fw-bold m-0">{{ item.precio }}€</p>
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <input type="number" class="form-control" placeholder="cantidad">
-
-                        </div>
-                        <p class="fw-semibold">20.50€/u</p>
-
-
+                        <button (click)="confirmarEliminar(item.nombre)" class="btn btn-sm text-danger p-0 mt-2">
+                            <u>Remove</u>
+                        </button>
                     </div>
-                    <button (click)="eliminar()" class=" btn btn-remove "><u> Remove</u></button>
                 </div>
-            </div>
+            } @empty {
+                <div class="card p-5 text-center shadow-sm">
+                    <p class="text-muted">Tu carrito está vacío</p>
+                    <a routerLink="/productos" class="btn btn-outline-primary btn-sm">Volver a la tienda</a>
+                </div>
+            }
 
-
-            <div class="card shadow-sm mb-4">
+            <div class="card shadow-sm mb-4 border-0 mt-4">
                 <div class="card-body">
                     <h5 class="fw-bold mb-3">Resumen de tu pedido</h5>
-
                     <div class="d-flex justify-content-between mb-2">
-                        <span>subtotal</span>
-                        <span>20.50€</span>
+                        <span>Subtotal</span>
+                        <span>{{ subtotal() | number:'1.2-2' }}€</span>
                     </div>
-
                     <div class="d-flex justify-content-between mb-2">
                         <span>Envío</span>
-                        <span class="text">Gratis</span>
+                        <span class="text-success fw-bold">Gratis</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>I.V.A (10%)</span>
+                        <span>{{ iva() | number:'1.2-2' }}€</span>
                     </div>
 
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>I.V.A</span>
-                        <span>10.20€</span>
+                    @if (descuento() > 0) {
+                        <div class="d-flex justify-content-between mb-2 text-success fw-bold">
+                            <span>Descuento aplicado</span>
+                            <span>-{{ descuento() | number:'1.2-2' }}€</span>
+                        </div>
+                    }
+
+                    <div class="mb-3 mt-3">
+                        <div class="input-group input-group-sm">
+                            <input type="text" [(ngModel)]="cuponCodigo" class="form-control" placeholder="Código de descuento (ej. DESCUENTO10)">
+                            <button class="btn btn-outline-secondary" type="button" (click)="aplicarCupon()">Aplicar</button>
+                        </div>
                     </div>
                     <hr>
-
-                    <div class="d-flex justify-content-between fw-bold ">
-
+                    <div class="d-flex justify-content-between fw-bold fs-5">
                         <span>Total</span>
-                        <span>30.70€</span>
+                        <span>{{ total() | number:'1.2-2' }}€</span>
                     </div>
                 </div>
             </div>
 
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="fw-bold mb-3">Imformacion De Compra </h5>
-
-                    <form>
-                        <div class="mb-3">
-                            <label class="form-label">Nombre </label>
-                            <input type="text" class="form-control" placeholder="Nombre" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Direccion</label>
-                            <input type="text" class="form-control" placeholder="c/****" required>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Ciudad</label>
-                                <input type="text" class="form-control" placeholder="Madrid" required>
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Disponibilidad Para Entrega:</label><br>
-                                <small class="opacity-10">El envio sera de 10-15 dias habiles</small>
-                                <input type="datetime-local" class="form-control"  placeholder="fecha-hora" required>
-
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <div class="form-check">
-                                   <span class="fw-bold">Metodo Pago</span><br>
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        <i class="bi bi-credit-card"></i> Visa
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        <i class="bi bi-paypal"></i> PayPal
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        <i class="bi bi-phone-flip"></i> Bizum
-                                    </label>
-
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        <i class="bi bi-phone"></i> ApplePay
-                                    </label>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </form>
-                    <button class=" btn btn-compra  w-100  fw-bold" routerLink="/pasarela">
-                        Completar compra
-                    </button>
-                </div>
-            </div>
-
+            <button class="btn btn-primary w-100 fw-bold py-3 shadow-sm"
+                    [disabled]="items().length === 0"
+                    routerLink="/pasarela">
+                IR A PAGAR
+            </button>
         </div>
     </div>
 </section>
