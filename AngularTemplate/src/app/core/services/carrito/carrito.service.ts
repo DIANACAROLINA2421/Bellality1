@@ -1,4 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 export interface ItemCarrito {
     nombre: string;
@@ -12,23 +13,29 @@ export interface ItemCarrito {
     providedIn: 'root',
 })
 export class CarritoService {
-    // Estado privado del carrito
-    private _items = signal<ItemCarrito[]>([]);
 
-    // Señales públicas para los componentesy
+    private API_URL = 'http://127.0.0.1:8000/api/cupon/';
+
+    constructor(private http: HttpClient) {}
+
+    // Estado del carrito
+    private _items = signal<ItemCarrito[]>([]);
     items = this._items.asReadonly();
 
-    // Cálculos automáticos reactivos
+    // Cálculos automáticos
     subtotal = computed(() =>
         this._items().reduce((acc, item) => acc + (item.precio * item.cantidad), 0)
     );
 
-    iva = computed(() => this.subtotal() * 0.10); // IVA del 10% según tu diseño anterior
+    iva = computed(() => this.subtotal() * 0.10);
 
     descuento = signal<number>(0);
 
-    total = computed(() => Math.max(0, this.subtotal() + this.iva() - this.descuento()));
+    total = computed(() =>
+        Math.max(0, this.subtotal() + this.iva() - this.descuento())
+    );
 
+    // Métodos del carrito
     agregar(producto: any) {
         const actual = this._items();
         const existe = actual.find(i => i.nombre === producto.nombre);
@@ -58,15 +65,8 @@ export class CarritoService {
         this.descuento.set(0);
     }
 
+
     aplicarCupon(codigo: string) {
-        // Simple logic for discount coupons
-        if (codigo === 'DESCUENTO10') {
-            this.descuento.set(10); // 10 euros off
-            return true;
-        } else if (codigo === 'MITAD') {
-            this.descuento.set((this.subtotal() + this.iva()) * 0.5); // 50% off
-            return true;
-        }
-        return false;
+        return this.http.get<any>(`${this.API_URL}?codigo=${codigo}`);
     }
 }
