@@ -18,11 +18,9 @@ export class CarritoService {
 
     constructor(private http: HttpClient) {}
 
-    // Estado del carrito
     private _items = signal<ItemCarrito[]>([]);
     items = this._items.asReadonly();
 
-    // Cálculos automáticos
     subtotal = computed(() =>
         this._items().reduce((acc, item) => acc + (item.precio * item.cantidad), 0)
     );
@@ -31,11 +29,13 @@ export class CarritoService {
 
     descuento = signal<number>(0);
 
+
+    cuponAplicado = signal<string | null>(null);
+
     total = computed(() =>
         Math.max(0, this.subtotal() + this.iva() - this.descuento())
     );
 
-    // Métodos del carrito
     agregar(producto: any) {
         const actual = this._items();
         const existe = actual.find(i => i.nombre === producto.nombre);
@@ -63,10 +63,12 @@ export class CarritoService {
     limpiarCarrito() {
         this._items.set([]);
         this.descuento.set(0);
+        this.cuponAplicado.set(null);
     }
-
 
     aplicarCupon(codigo: string) {
         return this.http.get<any>(`${this.API_URL}?codigo=${codigo}`);
     }
+
+
 }

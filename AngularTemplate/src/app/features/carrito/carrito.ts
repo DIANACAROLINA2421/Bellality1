@@ -17,12 +17,12 @@ export class Carrito {
     public carritoService = inject(CarritoService);
     private alertService = inject(AlertasService);
 
-    // Signals del servicio
     items = this.carritoService.items;
     subtotal = this.carritoService.subtotal;
     iva = this.carritoService.iva;
     total = this.carritoService.total;
     descuento = this.carritoService.descuento;
+    cuponAplicado = this.carritoService.cuponAplicado;
 
     cuponCodigo: string = '';
 
@@ -39,40 +39,49 @@ export class Carrito {
     }
 
     aplicarCupon() {
-        const codigo = this.cuponCodigo.trim().toUpperCase();
+        // Evitar aplicar dos cupones
+        if (this.cuponAplicado()) {
+            this.alertService.alert(
+                'Cupón ya aplicado',
+                `Ya has aplicado el cupón "${this.cuponAplicado()}"`,
+                'info'
+            );
+            return;
+        }
+
+        const codigo = this.cuponCodigo.trim();
 
         if (!codigo) {
             this.alertService.alert('Error', 'Introduce un código válido', 'error');
             return;
         }
 
-
         this.carritoService.aplicarCupon(codigo).subscribe({
             next: (resp) => {
-                if (resp.success) {
+                console.log('Respuesta del backend:', resp);
 
+                // ✅ Verificación robusta
+                if (resp && resp.success === true && resp.data) {
                     const porcentaje = resp.data.porcentaje;
-
-
                     const descuentoCalculado =
                         (this.subtotal() + this.iva()) * (porcentaje / 100);
 
-
                     this.carritoService.descuento.set(descuentoCalculado);
+                    this.carritoService.cuponAplicado.set(resp.data.codigo);
 
-
-                    this.total = this.carritoService.total;
+                    this.cuponCodigo = ''; // limpiar input
 
                     this.alertService.alert(
                         'Éxito',
-                        `Cupón aplicado correctamente (${porcentaje}% de descuento)`,
+                        `Cupón "${resp.data.codigo}" aplicado correctamente (${porcentaje}% de descuento)`,
                         'success'
                     );
                 } else {
                     this.alertService.alert('Error', 'Cupón inválido', 'error');
                 }
             },
-            error: () => {
+            error: (err) => {
+                console.error('Error al verificar el cupón:', err);
                 this.alertService.alert('Error', 'Cupón inválido', 'error');
             }
         });

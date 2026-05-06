@@ -7,7 +7,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("SECRET_KEY", "")
 DEBUG = config("DEBUG", default=True, cast=bool)
-CORS_ALLOW_ALL_ORIGINS = True
 
 if SECRET_KEY == "":
     raise KeyError("SECRET_KEY cannot be empty")
@@ -24,7 +23,6 @@ else:
 EXTENSIONES_BLACKLIST = [".ru", ".xyz"]
 # ========================
 
-
 INSTALLED_APPS = [
     'corsheaders',
     'django.contrib.admin',
@@ -36,24 +34,74 @@ INSTALLED_APPS = [
 
     # REST API
     'rest_framework',
+    'rest_framework_simplejwt',
 
     # Aplicaciones
     'Users',
     'Productos'
 ]
 
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    "ROTATE_REFRESH_TOKEN": False,
-    "BLACKLIST_AFTER_ROTATION": False,
-    "AUTH_HEADER_TYPES": ("Bearer",),
+# ============================================================
+# 🔥 AUTENTICACIÓN JWT
+# ============================================================
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+}
+
+# ============================================================
+# 🔥 CORS + COOKIES PARA ANGULAR
+# ============================================================
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:4200",
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',       # ← debe ir antes de CommonMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -80,13 +128,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Bellality.wsgi.application'
 
-
 # ============================================================
 # 🔥 BASE DE DATOS: SQLite en local / MySQL en Railway
 # ============================================================
 
 if os.environ.get('RAILWAY_ENVIRONMENT'):
-    # Producción en Railway → usa MySQL
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -102,14 +148,12 @@ if os.environ.get('RAILWAY_ENVIRONMENT'):
         }
     }
 else:
-    # Local → usa SQLite
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
 
 # ============================================================
 

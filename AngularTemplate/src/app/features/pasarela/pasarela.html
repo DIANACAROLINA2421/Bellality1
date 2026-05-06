@@ -1,28 +1,77 @@
 <section class="container py-4">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <h3 class="mb-4 fw-bold">Pasarela Pago <i class="bi bi-credit-card"></i></h3>
+            <h3 class="mb-4 fw-bold">Pasarela de Pago <i class="bi bi-credit-card"></i></h3>
 
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4">
+
+                    <!-- TOTAL -->
                     <div class="alert alert-secondary text-center mb-4">
                         <span class="d-block small text-uppercase">Total a cargar:</span>
-                        <strong class="fs-3">{{ carritoService.total() | number:'1.2-2' }}€</strong>
+                        <strong class="fs-3 d-block mb-2">{{ carritoService.total() | number:'1.2-2' }}€</strong>
                     </div>
 
-                    <h5 class="fw-bold mb-3">Datos de la tarjeta</h5>
+                    <!-- SELECCIÓN DE MÉTODO DE PAGO -->
+                    <h5 class="fw-bold mb-3">Selecciona una forma de pago</h5>
 
-                    <form #formPago="ngForm">
+                    <div class="d-flex gap-3 mb-4">
+                        <button class="btn btn-outline-primary flex-fill"
+                                [class.active]="formaPago === 'paypal'"
+                                (click)="formaPago = 'paypal'">
+                            <i class="bi bi-paypal"></i> PayPal
+                        </button>
+
+                        <button class="btn btn-outline-dark flex-fill"
+                                [class.active]="formaPago === 'apple'"
+                                (click)="formaPago = 'apple'">
+                            <i class="bi bi-apple"></i> Apple Pay
+                        </button>
+
+                        <button class="btn btn-outline-success flex-fill"
+                                [class.active]="formaPago === 'tarjeta'"
+                                (click)="formaPago = 'tarjeta'">
+                            <i class="bi bi-credit-card"></i> Tarjeta
+                        </button>
+                    </div>
+
+                    <!-- PAYPAL -->
+                    <div *ngIf="formaPago === 'paypal'" class="p-3 border rounded bg-light text-center">
+                        <h6 class="fw-bold mb-2">Pagar con PayPal</h6>
+                        <p class="text-muted small mb-3">Serás redirigido a PayPal para completar el pago.</p>
+
+                        <!-- 🔹 Botón PayPal dentro del recuadro gris -->
+                        <a href="https://www.paypal.com/es/home"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-warning fw-bold px-4 py-2">
+                            <i class="bi bi-paypal"></i> Ir a PayPal
+                        </a>
+                    </div>
+
+                    <!-- APPLE PAY -->
+                    <div *ngIf="formaPago === 'apple'" class="p-3 border rounded bg-light text-center">
+                        <h6 class="fw-bold mb-2">Pagar con Apple Pay</h6>
+                        <p class="text-muted small">Confirma el pago desde tu dispositivo Apple.</p>
+                    </div>
+
+                    <!-- TARJETA -->
+                    <form *ngIf="formaPago === 'tarjeta'" #formPago="ngForm" class="mt-3">
+
+                        <h5 class="fw-bold mb-3">Datos de la tarjeta</h5>
+
                         <div class="mb-3">
                             <label class="form-label">Nombre Titular</label>
                             <input type="text" name="titular" [(ngModel)]="datosPago.titular"
                                    class="form-control" placeholder="Como aparece en la tarjeta" required>
                         </div>
+
                         <div class="mb-3">
-                            <label class="form-label">Número de Cuenta</label>
+                            <label class="form-label">Número de Tarjeta</label>
                             <input type="text" name="numero" [(ngModel)]="datosPago.numero"
                                    class="form-control" placeholder="0000 0000 0000 0000" required>
                         </div>
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Fecha Expedición</label>
@@ -35,13 +84,15 @@
                                        class="form-control" placeholder="***" maxlength="3" required>
                             </div>
                         </div>
-
-                        <button type="button" (click)="confirmar()"
-                                [disabled]="!formPago.valid || carritoService.items().length === 0"
-                                class="btn btn-pagar w-100 fw-bold mt-3 py-3 shadow-sm">
-                            CONFIRMAR Y PAGAR
-                        </button>
                     </form>
+
+                    <!-- BOTÓN CONFIRMAR -->
+                    <button type="button"
+                            (click)="confirmar()"
+                            class="btn btn-pagar w-100 fw-bold mt-3 py-3 shadow-sm">
+                        CONFIRMAR Y PAGAR
+                    </button>
+
                 </div>
             </div>
 

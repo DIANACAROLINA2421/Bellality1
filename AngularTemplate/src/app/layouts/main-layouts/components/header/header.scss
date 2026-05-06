@@ -1,32 +1,67 @@
-
-.iconos-compra{
+/* ===== ICONOS ===== */
+.iconos-compra {
   color: #1e1e1e;
   font-size: 25px;
   margin-right: 20px;
-
-}
-.iconos-compra:hover{
-  color:  #4DB6AC;
+  transition: color 0.3s ease;
 }
 
-.letras{
+.iconos-compra:hover {
+  color: #4DB6AC;
+}
+
+/* ===== BOTONES DE TEXTO ===== */
+.letras {
   color: #1e1e1e;
   font-size: 20px;
   margin-top: 20px;
   border: none;
+  background: transparent;
+  transition: color 0.3s ease;
 }
-.letras:hover{
-color: green;
+
+.letras:hover {
+  color: green;
 }
-.contenedor{
+
+
+.contenedor {
   position: relative;
   width: 100%;
   overflow: hidden;
-  min-height:  500px;
+  min-height: 500px;
 }
-.mi:hover{
+
+
+.mi:hover {
   cursor: pointer;
-  color: #4DB6AC;
+  color: #34c3a0;
+  transition: color 0.3s ease;
+}
+.btn-light.btn-sm {
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: 500;
+  border: 1px solid #d2d2d7;
+  transition: all 0.25s ease;
 }
 
+.btn-light.btn-sm:hover {
+  background-color: #b0ffa7;
+  transform: translateY(-2px);
+}
 
+.btn-outline-danger.btn-sm {
+  border: 1px solid #ff3b30;
+  color: #ff3b30;
+  border-radius: 10px;
+  padding: 10px 20px;
+  transition: all 0.25s ease;
+}
+
+.btn-outline-danger.btn-sm:hover {
+  background-color: #ff3b30;
+  color: #fff;
+}

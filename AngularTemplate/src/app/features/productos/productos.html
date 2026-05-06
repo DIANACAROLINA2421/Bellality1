@@ -1,21 +1,27 @@
 <section>
-    <div class=" mi-contenedor ">
-        <img src="/images/PORT.jpg" alt="" class="imagen mb-5">
-        <img src="/images/RT.jpg" alt="" class=" imagen mb-5">
-        <img src="/images/PORT.jpg" alt="" class=" imagen mb-5">
-        <img src="/images/RT.jpg" alt="" class=" imagen mb-5">
+    <div class="mi-contenedor">
+        <img src="/images/PORT.jpg" class="imagen mb-5">
+        <img src="/images/RT.jpg" class="imagen mb-5">
+        <img src="/images/PORT.jpg" class="imagen mb-5">
+        <img src="/images/RT.jpg" class="imagen mb-5">
     </div>
+
     <hr class="raya">
 
-    <div class="productos-container py-4 ">
+    <div class="productos-container py-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="fw-bold">All Products:</h3>
         </div>
 
         <div class="d-flex flex-wrap gap-2 mb-4">
             <button class="btn btn-outline-dark" routerLink="/productos" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Todos</button>
+
             @for (categoria of categorias(); track categoria.slug) {
-                <button class="btn btn-outline-dark" [routerLink]="['/productos', categoria.slug]" routerLinkActive="active">{{categoria.nombre}}</button>
+                <button class="btn btn-outline-dark"
+                        [routerLink]="['/productos', categoria.slug]"
+                        routerLinkActive="active">
+                    {{categoria.nombre}}
+                </button>
             }
         </div>
     </div>
@@ -23,25 +29,23 @@
     <div class="row g-3">
 
         @for (producto of productos(); track producto.slug_producto) {
-            <div class="col -6 col-md-3" routerLink="/carrito{{producto.slug}}">
+            <div class="col-6 col-md-3">
 
                 <div class="productos-card text-center p-3 rounded shadow-sm rounded-5">
-                    <img src="{{producto.imagen}}" alt="" class=" pro-imagen mb-5">
+                    <img src="{{producto.imagen}}" class="pro-imagen mb-5">
                     <h3 class="p_titulo">{{producto.nombre}}</h3>
                     <p class="defi">{{producto.descripcion}}</p>
-                    <p class=" precio text-danger">{{producto.precio}}€</p>
+                    <p class="precio text-danger">{{producto.precio}}€</p>
+
                     <div>
-                        <button (click)="anadirCarrito(producto)" class=" botonCompra btn">Añadir carrito <i class="carrito bi bi-cart3"></i></button>
+                        <button (click)="anadirCarrito(producto)" class="botonCompra btn">
+                            Añadir carrito <i class="carrito bi bi-cart3"></i>
+                        </button>
                     </div>
-
-
                 </div>
 
             </div>
         }
 
-
     </div>
-
-
 </section>

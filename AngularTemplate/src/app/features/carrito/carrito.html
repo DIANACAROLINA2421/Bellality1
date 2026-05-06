@@ -33,14 +33,17 @@
             <div class="card shadow-sm mb-4 border-0 mt-4">
                 <div class="card-body">
                     <h5 class="fw-bold mb-3">Resumen de tu pedido</h5>
+
                     <div class="d-flex justify-content-between mb-2">
                         <span>Subtotal</span>
                         <span>{{ subtotal() | number:'1.2-2' }}€</span>
                     </div>
+
                     <div class="d-flex justify-content-between mb-2">
                         <span>Envío</span>
                         <span class="text-success fw-bold">Gratis</span>
                     </div>
+
                     <div class="d-flex justify-content-between mb-2">
                         <span>I.V.A (10%)</span>
                         <span>{{ iva() | number:'1.2-2' }}€</span>
@@ -48,18 +51,40 @@
 
                     @if (descuento() > 0) {
                         <div class="d-flex justify-content-between mb-2 text-success fw-bold">
-                            <span>Descuento aplicado</span>
+                            <span>Descuento aplicado ({{ cuponAplicado() }})</span>
                             <span>-{{ descuento() | number:'1.2-2' }}€</span>
                         </div>
                     }
 
                     <div class="mb-3 mt-3">
                         <div class="input-group input-group-sm">
-                            <input type="text" [(ngModel)]="cuponCodigo" class="form-control" placeholder="Código de descuento (ej. DESCUENTO10)">
-                            <button class="btn btn-outline-secondary" type="button" (click)="aplicarCupon()">Aplicar</button>
+
+                            <!-- INPUT DESACTIVADO SI YA HAY CUPÓN -->
+                            <input type="text"
+                                   [(ngModel)]="cuponCodigo"
+                                   class="form-control"
+                                   placeholder="Código de descuento"
+                                   [disabled]="!!cuponAplicado()">
+
+                            <!-- BOTÓN DESACTIVADO SI YA HAY CUPÓN -->
+                            <button class="btn btn-outline-secondary"
+                                    type="button"
+                                    (click)="aplicarCupon()"
+                                    [disabled]="!!cuponAplicado()">
+                                Aplicar
+                            </button>
                         </div>
+
+                        <!-- MENSAJE OPCIONAL DE CUPÓN YA APLICADO -->
+                        @if (cuponAplicado()) {
+                            <p class="text-success small mt-2">
+                                Cupón <strong>{{ cuponAplicado() }}</strong> aplicado correctamente.
+                            </p>
+                        }
                     </div>
+
                     <hr>
+
                     <div class="d-flex justify-content-between fw-bold fs-5">
                         <span>Total</span>
                         <span>{{ total() | number:'1.2-2' }}€</span>

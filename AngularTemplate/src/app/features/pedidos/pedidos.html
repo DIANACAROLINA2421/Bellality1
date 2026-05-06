@@ -1,0 +1,40 @@
+<div class="pedidos-container">
+    <h2 class="titulo">Mis pedidos</h2>
+
+    @if (pedidos.length === 0) {
+        <div class="sin-pedidos">
+            <p>No tienes pedidos todavía.</p>
+        </div>
+    }
+
+    @for (pedido of pedidos; track pedido.id) {
+        <div class="pedido-card">
+            <div class="pedido-header">
+                <h3>Pedido #{{ pedido.id }}</h3>
+                <p class="fecha">{{ pedido.fecha }}</p>
+            </div>
+
+            <div class="pedido-body">
+                <hr>
+                <p><strong>Total:</strong> {{ pedido.total }} €</p>
+
+                <h4>Productos:</h4>
+                <ul class="productos-lista">
+                    @for (p of pedido.productos; track p.nombre) {
+                        <li class="producto-item">
+
+
+                            <div class="producto-info">
+                                <span class="producto-nombre">{{ p.nombre }}</span>
+                                <span class="producto-detalle">
+                                    (x{{ p.cantidad }}) — {{ p.precio }} €
+                                </span>
+                            </div>
+
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+</div>

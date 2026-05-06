@@ -25,7 +25,6 @@ export class Productos implements OnInit {
     }
 
     ngOnInit() {
-        // Cargar categorías
         this.productsService.getCategorias().subscribe({
             next: (response) => {
                 if (response.data) {
@@ -37,18 +36,15 @@ export class Productos implements OnInit {
             error: (error) => console.error('Error al cargar categorias:', error)
         });
 
-        // Escuchamos los cambios en los parámetros de la URL
         this.route.params.subscribe(params => {
-            const slug = params['slug']; // Ahora 'slug' está disponible aquí dentro
+            const slug = params['slug'];
 
-            // Llamamos al servicio CADA VEZ que el slug cambie
             this.productsService.getProductos(slug).subscribe({
                 next: (response) => {
                     if (response.success) {
                         this.productos.set(response.data);
-                        console.log('Productos cargados:', response.data);
                     } else if (response.data) {
-                         this.productos.set(response.data);
+                        this.productos.set(response.data);
                     }
                 },
                 error: (error) => {
