@@ -88,6 +88,7 @@ CORS_ALLOW_METHODS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -154,7 +155,8 @@ USE_TZ = True
 
 ASSETS_DIR = BASE_DIR / 'assets'
 STATIC_URL = 'static/'
-STATIC_ROOT = ASSETS_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = ASSETS_DIR / 'media'
 
