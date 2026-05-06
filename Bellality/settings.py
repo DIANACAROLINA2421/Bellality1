@@ -1,5 +1,7 @@
 from datetime import timedelta
 from pathlib import Path
+
+import dj_database_url
 from decouple import config
 import os
 
@@ -149,10 +151,11 @@ if os.environ.get('RAILWAY_ENVIRONMENT'):
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+        'default': dj_database_url.config(
+            default='sqlite:///db.sqlite3',
+            conn_max_age=600,
+            ssl_require=False
+        )
     }
 
 # ============================================================
