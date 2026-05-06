@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiURL: "https://www.google.com/api",
+    apiURL: "https://bellality1-production.up.railway.app/api"
 }

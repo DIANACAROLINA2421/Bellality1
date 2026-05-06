@@ -1,7 +1,5 @@
 from datetime import timedelta
 from pathlib import Path
-
-import dj_database_url
 from decouple import config
 import os
 
@@ -16,14 +14,9 @@ if SECRET_KEY == "":
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = config("ALLOWED_HOSTS", default=[])
-    if len(ALLOWED_HOSTS) != 0:
-        ALLOWED_HOSTS = ALLOWED_HOSTS.split(',')
+    ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="bellality1-production.up.railway.app").split(',')
 
-# ========================
-# == VARIABLES ==
 EXTENSIONES_BLACKLIST = [".ru", ".xyz"]
-# ========================
 
 INSTALLED_APPS = [
     'corsheaders',
@@ -33,19 +26,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # REST API
     'rest_framework',
     'rest_framework_simplejwt',
-
-    # Aplicaciones
     'Users',
     'Productos'
 ]
-
-# ============================================================
-# 🔥 AUTENTICACIÓN JWT
-# ============================================================
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -65,19 +50,25 @@ SIMPLE_JWT = {
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
 }
 
-# ============================================================
-# 🔥 CORS + COOKIES PARA ANGULAR
-# ============================================================
-
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:4200",
-]
+if DEBUG:
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:4200",
+    ]
+    CSRF_TRUSTED_ORIGINS = [
+        "http://localhost:4200",
+    ]
+else:
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:4200",
+        "https://bellality1-production.up.railway.app",
+        # Añade aquí tu dominio de Vercel cuando lo tengas:
+        # "https://tu-app.vercel.app",
+    ]
+    CSRF_TRUSTED_ORIGINS = [
+        "https://bellality1-production.up.railway.app",
+    ]
 
 CORS_ALLOW_HEADERS = [
     'accept',
@@ -92,18 +83,13 @@ CORS_ALLOW_HEADERS = [
 ]
 
 CORS_ALLOW_METHODS = [
-    'DELETE',
-    'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT',
+    'DELETE', 'GET', 'OPTIONS', 'PATCH', 'POST', 'PUT',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',       # ← debe ir antes de CommonMiddleware
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -130,18 +116,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Bellality.wsgi.application'
 
-# ============================================================
-# 🔥 BASE DE DATOS: SQLite en local / MySQL en Railway
-# ============================================================
-
+# BASE DE DATOS
 if os.environ.get('RAILWAY_ENVIRONMENT'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': config('DB_NAME'),
-            'USER': config('DB_USER'),
+            'NAME': config('DB_NAME', default='railway'),
+            'USER': config('DB_USER', default='root'),
             'PASSWORD': config('DB_PASSWORD'),
-            'HOST': config('DB_HOST'),
+            'HOST': config('DB_HOST', default='mysql.railway.internal'),
             'PORT': config('DB_PORT', default='3306'),
             'OPTIONS': {
                 'charset': 'utf8mb4',
@@ -151,14 +134,11 @@ if os.environ.get('RAILWAY_ENVIRONMENT'):
     }
 else:
     DATABASES = {
-        'default': dj_database_url.config(
-            default='sqlite:///db.sqlite3',
-            conn_max_age=600,
-            ssl_require=False
-        )
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-
-# ============================================================
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -173,10 +153,8 @@ USE_I18N = True
 USE_TZ = True
 
 ASSETS_DIR = BASE_DIR / 'assets'
-
 STATIC_URL = 'static/'
 STATIC_ROOT = ASSETS_DIR / 'static'
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = ASSETS_DIR / 'media'
 
