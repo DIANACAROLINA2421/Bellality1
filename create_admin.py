@@ -1,21 +1,24 @@
-import django
 import os
+import django
+
+try:
+    import pymysql
+    pymysql.install_as_MySQLdb()
+except ImportError:
+    pass
+from django.contrib.auth import get_user_model
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Bellality.settings')
 django.setup()
 
-from Users.models import CustomUser
+User = get_user_model()
 
-email = 'diana@gmail.com'
-password = 'Diana1234!'
+username = os.getenv('DJANGO_SUPERUSER_USERNAME', 'admin')
+email = os.getenv('DJANGO_SUPERUSER_EMAIL', 'admin@example.com')
+password = os.getenv('DJANGO_SUPERUSER_PASSWORD', 'admin123')
 
-if not CustomUser.objects.filter(email=email).exists():
-    CustomUser.objects.create_superuser(
-        email=email,
-        password=password,
-        nombre='Admin',
-        apellidos='Admin'
-    )
-    print(f'✅ Superusuario {email} creado')
+if not User.objects.filter(username=username).exists():
+    print(f"Creating superuser: {username}")
+    User.objects.create_superuser(username=username, email=email, password=password)
 else:
-    print(f'⚠️ Ya existe: {email}')
+    print(f"Superuser {username} already exists.")
