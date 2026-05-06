@@ -156,7 +156,9 @@ USE_TZ = True
 ASSETS_DIR = BASE_DIR / 'assets'
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# Opcional: Esto ayuda si tienes problemas con archivos que no se encuentran
+WHITENOISE_USE_FINDERS = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = ASSETS_DIR / 'media'
 

@@ -1,7 +1,26 @@
-AngularTemplate/.idea/
-AngularTemplate/node_modules/
-AngularTemplate/.env
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
 
-Django1/.venv/
-Django1/.idea/
-Django1/.env
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# IDEs
+.idea/
+.vscode/
+
+# Node (Angular)
+AngularTemplate/node_modules/
+AngularTemplate/dist/
+AngularTemplate/.env
