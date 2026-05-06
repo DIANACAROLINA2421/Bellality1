@@ -1,0 +1,9 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "build": {
+    "builder": "RAILPACK"
+  },
+  "deploy": {
+    "startCommand": "python manage.py collectstatic --noinput && python manage.py migrate && python create_admin.py && gunicorn Bellality.wsgi:application --bind 0.0.0.0:$PORT"
+  }
+}
