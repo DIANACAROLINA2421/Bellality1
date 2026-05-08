@@ -63,11 +63,11 @@ else:
     CORS_ALLOWED_ORIGINS = [
         "http://localhost:4200",
         "https://bellality1-production.up.railway.app",
-        # Añade aquí tu dominio de Vercel cuando lo tengas:
-        # "https://tu-app.vercel.app",
+        "https://bellality.netlify.app",
     ]
     CSRF_TRUSTED_ORIGINS = [
         "https://bellality1-production.up.railway.app",
+        "https://bellality.netlify.app",
     ]
 
 CORS_ALLOW_HEADERS = [
