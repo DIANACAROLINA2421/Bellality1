@@ -18,13 +18,13 @@
   font-size: 50px;
 }
 
-.productos-card{
+.productos-card {
   background-color: rgb(255, 255, 255);
   margin-bottom: 50px;
   margin-left: 50px;
   margin-right: 50px;
+  height: 100%;
 }
-
 .botonCompra{
   background-color: black;
   font-size: 20px;
@@ -60,6 +60,9 @@
 }
 .color-base1{
   color: #d38f6d;
+}
+.row {
+  align-items: stretch;
 }
 
 /* ----------------------------- */

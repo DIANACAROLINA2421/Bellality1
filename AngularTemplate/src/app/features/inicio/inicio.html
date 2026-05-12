@@ -29,8 +29,12 @@
         <div class="row g-3">
             @for (categoria of categorias(); track categoria.slug) {
                 <div class="col-6 col-md-3" routerLink="/productos/{{categoria.slug}}">
-                    <div class="category-card text-center p-3 rounded shadow-sm rounded-5">
-                        <img src="{{categoria.image}}" alt="" class="categorias-img mb-5">
+                    <div class="category-card text-center p-3 rounded shadow-sm rounded-5 d-flex flex-column align-items-center">
+                        <img
+                                [src]="getImagenUrl(categoria.image)"
+                                (error)="onImageError($event)"
+                                alt="{{categoria.nombre}}"
+                                class="categorias-img mb-3">
                         <p class="letr fw-bold">{{categoria.nombre}} <i class="corazon bi bi-balloon-heart"></i></p>
                     </div>
                 </div>
@@ -50,13 +54,14 @@
             <div class="texto-foto">
                 <p class="texto4">-30%</p>
             </div>
-            <div class="text-center p-3 rounded shadow-sm rounded-5 carta">
-                <img src="/images/kit.jpg" alt="" class="categorias-imge mb-5">
+            <div class="text-center p-3 rounded shadow-sm rounded-5 carta d-flex flex-column">
+                <img src="/images/kit.jpg" alt="" class="categorias-imge mb-3">
                 <h3 class="produ-titulo">Base de Maquillaje oil almendras</h3>
-                <p class="produ-desc">
+                <p class="produ-desc flex-grow-1">
                     Base de maquillaje diferentes tonos, con un toque floral, aceite de almendras rico en vitaminas
                 </p>
-                <p><s>25.50€</s></p> <p class="text-danger">17.85€</p>
+                <p><s>25.50€</s></p>
+                <p class="text-danger">17.85€</p>
                 <button class="comprar-ya" routerLink="/carrito">¡Buy Now!</button>
             </div>
         </div>
@@ -65,13 +70,14 @@
             <div class="texto-foto">
                 <p class="texto4">-30%</p>
             </div>
-            <div class="text-center p-3 rounded shadow-sm rounded-5">
-                <img src="/images/kit.jpg" alt="" class="categorias-imge mb-5 product-car">
+            <div class="text-center p-3 rounded shadow-sm rounded-5 d-flex flex-column">
+                <img src="/images/kit.jpg" alt="" class="categorias-imge mb-3 product-car">
                 <h3 class="produ-titulo">Base de Maquillaje oil almendras</h3>
-                <p class="produ-desc">
+                <p class="produ-desc flex-grow-1">
                     Base de maquillaje diferentes tonos, con un toque floral, aceite de almendras rico en vitaminas
                 </p>
-                <p><s>49.99€</s></p> <p class="text-danger">34.99€</p>
+                <p><s>49.99€</s></p>
+                <p class="text-danger">34.99€</p>
                 <button class="comprar-ya" routerLink="/carrito">¡Buy Now!</button>
             </div>
         </div>
@@ -80,13 +86,14 @@
             <div class="texto-foto">
                 <p class="texto4">-30%</p>
             </div>
-            <div class="text-center p-3 rounded shadow-sm rounded-5">
-                <img src="/images/kit.jpg" alt="" class="categorias-imge mb-5 product-car">
+            <div class="text-center p-3 rounded shadow-sm rounded-5 d-flex flex-column">
+                <img src="/images/kit.jpg" alt="" class="categorias-imge mb-3 product-car">
                 <h3 class="produ-titulo">Base de Maquillaje oil almendras</h3>
-                <p class="produ-desc">
+                <p class="produ-desc flex-grow-1">
                     Base de maquillaje diferentes tonos, con un toque floral, aceite de almendras rico en vitaminas
                 </p>
-                <p><s>25.50€</s></p> <p class="text-danger">17.85€</p>
+                <p><s>25.50€</s></p>
+                <p class="text-danger">17.85€</p>
                 <button class="comprar-ya" routerLink="/carrito">¡Buy Now!</button>
             </div>
         </div>

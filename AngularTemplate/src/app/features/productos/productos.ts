@@ -3,6 +3,7 @@ import { ProductsService } from "../../core/services/productos/productos.service
 import { ActivatedRoute, RouterLink, RouterLinkActive } from "@angular/router";
 import { AlertasService } from "../../core/utils/alertas.service";
 import { CarritoService } from "../../core/services/carrito/carrito.service";
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-productos',
@@ -18,6 +19,19 @@ export class Productos implements OnInit {
     private carritoService = inject(CarritoService);
     private alertService = inject(AlertasService);
     private route = inject(ActivatedRoute);
+
+    // Construye la URL completa de la imagen
+    getImagenUrl(imagen: string): string {
+        if (!imagen) return '/images/placeholder.jpg';
+        if (imagen.startsWith('http')) return imagen; // ya es URL completa
+        return `${environment.apiURL.replace('/api', '')}/media/${imagen}`;
+    }
+
+    onImageError(event: Event) {
+        const img = event.target as HTMLImageElement;
+        img.src = '/images/placeholder.jpg';
+        img.onerror = null;
+    }
 
     anadirCarrito(producto: any) {
         this.carritoService.agregar(producto);
@@ -38,7 +52,6 @@ export class Productos implements OnInit {
 
         this.route.params.subscribe(params => {
             const slug = params['slug'];
-
             this.productsService.getProductos(slug).subscribe({
                 next: (response) => {
                     if (response.success) {
@@ -47,9 +60,7 @@ export class Productos implements OnInit {
                         this.productos.set(response.data);
                     }
                 },
-                error: (error) => {
-                    console.error('Error al cargar productos:', error);
-                }
+                error: (error) => console.error('Error al cargar productos:', error)
             });
         });
     }
