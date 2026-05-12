@@ -14,7 +14,7 @@ export interface ItemCarrito {
 })
 export class CarritoService {
 
-    private API_URL = 'http://127.0.0.1:8000/api/cupon/';
+    private API_URL = 'https://bellality1-production.up.railway.app/api/cupon/';
 
     constructor(private http: HttpClient) {}
 

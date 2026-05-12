@@ -1,12 +1,15 @@
 .card {
   border-radius: 12px;
 }
+
 .carrito{
   color: #66BB6A;
 }
+
 .des{
   font-size: 13px;
 }
+
 .text{
   color: #66BB6A;
 }
@@ -28,6 +31,61 @@ h5 {
 .btn-remove{
   border: none;
 }
+
 .btn-remove:hover{
   background-color: rgba(213, 103, 103, 0.22);
+}
+
+.cantidad-input {
+  width: 65px;
+}
+
+/* ----------------------------- */
+/* RESPONSIVE */
+/* ----------------------------- */
+
+@media (max-width: 992px) {
+  .cantidad-input {
+    width: 55px;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .d-flex {
+    flex-wrap: wrap;
+  }
+
+  .cantidad-input {
+    width: 50px;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  h5 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cantidad-input {
+    width: 45px;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+  }
+
+  .card-body p {
+    font-size: 0.9rem;
+  }
+
+  .card-body span {
+    font-size: 0.9rem;
+  }
 }

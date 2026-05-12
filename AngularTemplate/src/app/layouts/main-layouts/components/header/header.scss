@@ -24,20 +24,13 @@
   color: green;
 }
 
-
-.contenedor {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  min-height: 500px;
-}
-
-
 .mi:hover {
   cursor: pointer;
   color: #34c3a0;
   transition: color 0.3s ease;
 }
+
+/* BOTONES LOGIN / LOGOUT */
 .btn-light.btn-sm {
   background-color: #f5f5f7;
   color: #1d1d1f;
@@ -64,4 +57,78 @@
 .btn-outline-danger.btn-sm:hover {
   background-color: #ff3b30;
   color: #fff;
+}
+
+/* LOGO */
+.logo-header {
+  max-width: 140px;
+}
+
+/* ----------------------------- */
+/* RESPONSIVE */
+/* ----------------------------- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .menu-principal {
+    gap: 10px;
+  }
+
+  .letras {
+    font-size: 18px;
+  }
+
+  .iconos-header {
+    margin-top: 20px;
+  }
+
+  .logo-header {
+    max-width: 120px;
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+  header .d-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .menu-principal {
+    margin-top: 10px;
+  }
+
+  .iconos-header {
+    margin-top: 10px;
+  }
+
+  .letras {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .logo-header {
+    max-width: 110px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 576px) {
+  .menu-principal .d-flex {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .iconos-header {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .letras {
+    font-size: 15px;
+  }
+
+  .logo-header {
+    max-width: 100px;
+  }
 }

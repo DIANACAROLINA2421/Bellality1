@@ -4,12 +4,12 @@
         <!-- LOGO -->
         <div class="d-flex flex-row gap-3">
             <div class="d-flex flex-row gap-1">
-                <img src="/images/logo.png" alt="Logo" class="img-fluid">
+                <img src="/images/logo.png" alt="Logo" class="img-fluid logo-header">
             </div>
         </div>
 
         <!-- MENÚ PRINCIPAL -->
-        <div class="barra-g d-flex flex-row justify-content-between align-items-center pt-3 ps-3 text-secondary">
+        <div class="barra-g d-flex flex-row justify-content-between align-items-center pt-3 ps-3 text-secondary menu-principal">
             <div class="d-flex flex-row gap-4">
                 <div class="letras d-flex flex-row gap-1">
                     <button class="letras btn" routerLink="/">Home</button>
@@ -30,14 +30,12 @@
         </div>
 
         <!-- ICONOS Y USUARIO -->
-        <div class="iconos-compra d-flex flex-row gap-3 text-secondary mt-5 align-items-center">
-
+        <div class="iconos-compra d-flex flex-row gap-3 text-secondary mt-5 align-items-center iconos-header">
 
             @if (isLoggedIn) {
-                <div class="d-flex flex-row gap-2 align-items-center">
+                <div class="d-flex flex-row gap-2 align-items-center usuario-log">
                     <span class="fw-bold text-dark">Hola, {{ userName }}</span>
 
-                    <!-- BOTÓN MIS PEDIDOS -->
                     <button class="btn btn-light btn-sm" routerLink="/mis-pedidos">
                         Mis pedidos
                     </button>
@@ -48,7 +46,6 @@
                 </div>
             }
 
-            <!-- USUARIO NO LOGEADO -->
             @else {
                 <div class="d-flex flex-row gap-1">
                     <button class="btn mi">
@@ -57,7 +54,6 @@
                 </div>
             }
 
-            <!-- CARRITO -->
             <div class="d-flex flex-row gap-1">
                 <button class="btn mi">
                     <i class="iconos-compra bi bi-cart" routerLink="/carrito"></i>

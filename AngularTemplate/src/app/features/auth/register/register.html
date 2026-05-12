@@ -1,41 +1,36 @@
 <section class="register-container d-flex">
 
-
-
     <div class="left-side d-flex justify-content-center align-items-center">
         <div class="form-box">
             <div class="botones mt-3 d-flex gap-3 justify-content-center">
-                <button class=" btn btn-verde mt-3" routerLink="/login" routerLinkActive="activo" [routerLinkActiveOptions]="{exact:true}">Login</button>
-                <button class="btn btn-verde mt-3" routerLink="" routerLinkActive="activoboton">Register</button>
+                <button class="btn btn-verde mt-3" routerLink="/login" routerLinkActive="activo" [routerLinkActiveOptions]="{exact:true}">
+                    Login
+                </button>
+                <button class="btn btn-verde mt-3" routerLink="" routerLinkActive="activoboton">
+                    Register
+                </button>
             </div>
 
             <img src="/images/logo.png" class="logo mb-4">
-
 
             <h1 class="mb-4">Create Account</h1>
 
             <form [formGroup]='registerForm' (ngSubmit)="register()">
                 <label for="text" class="form-label">Full Name:</label>
-                <input type="text" id="text" name="text" class="form-control mb-3" placeholder="Your Name" required
-                    formControlName="nombre"
-                >
-                
+                <input type="text" id="text" name="text" class="form-control mb-3"
+                       placeholder="Your Name" required formControlName="nombre">
+
                 <label for="email" class="form-label">Email Address:</label>
-                <input type="email" id="email" name="email" class="form-control mb-3" placeholder="ejemplo@example.com" required
-                    formControlName="email"
-                >
+                <input type="email" id="email" name="email" class="form-control mb-3"
+                       placeholder="ejemplo@example.com" required formControlName="email">
 
                 <label for="password" class="form-label">Password:</label>
-                <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Creat a Password" required
-                    formControlName="password1"
-                >
-
+                <input type="password" id="password" name="password" class="form-control mb-4"
+                       placeholder="Create a Password" required formControlName="password1">
 
                 <label for="password" class="form-label">Password:</label>
-                <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Confirm your password" required
-                    formControlName="password2"
-                >
-
+                <input type="password" id="password" name="password" class="form-control mb-4"
+                       placeholder="Confirm your password" required formControlName="password2">
 
                 <label class="d-flex align-items-center mb-4">
                     <input type="checkbox" id="checkbox" name="checkbox" required>
@@ -43,16 +38,18 @@
                 </label>
 
                 <button type="submit" class="btn btn-dark w-100 mb-3"
-                    [disabled]="registerForm.invalid"
-                >Create Account</button>
+                        [disabled]="registerForm.invalid">
+                    Create Account
+                </button>
             </form>
 
         </div>
     </div>
+
     <div class="right-side d-flex justify-content-center align-items-center">
         <img src="/images/register.jpg" class="img-fluid">
         <p class="texto-imagen">No Worry Be Skincare...<i class="corazon bi bi-suit-heart-fill"></i></p>
     </div>
 
-
 </section>
+

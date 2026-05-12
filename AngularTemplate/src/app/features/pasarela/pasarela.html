@@ -12,10 +12,10 @@
                         <strong class="fs-3 d-block mb-2">{{ carritoService.total() | number:'1.2-2' }}€</strong>
                     </div>
 
-                    <!-- SELECCIÓN DE MÉTODO DE PAGO -->
+                    <!-- MÉTODOS DE PAGO -->
                     <h5 class="fw-bold mb-3">Selecciona una forma de pago</h5>
 
-                    <div class="d-flex gap-3 mb-4">
+                    <div class="d-flex gap-3 mb-4 metodo-pago-container">
                         <button class="btn btn-outline-primary flex-fill"
                                 [class.active]="formaPago === 'paypal'"
                                 (click)="formaPago = 'paypal'">
@@ -40,7 +40,6 @@
                         <h6 class="fw-bold mb-2">Pagar con PayPal</h6>
                         <p class="text-muted small mb-3">Serás redirigido a PayPal para completar el pago.</p>
 
-                        <!-- 🔹 Botón PayPal dentro del recuadro gris -->
                         <a href="https://www.paypal.com/es/home"
                            target="_blank"
                            rel="noopener noreferrer"

@@ -36,7 +36,6 @@
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
 }
 
-/* ===== HEADER DEL PEDIDO ===== */
 .pedido-header {
   display: flex;
   justify-content: space-between;
@@ -55,10 +54,9 @@
   color: #777;
 }
 
-/* ===== TOTAL ABAJO A LA DERECHA ===== */
 .pedido-body {
   position: relative;
-  padding-bottom: 50px; /* espacio para el total */
+  padding-bottom: 50px;
 }
 
 .pedido-body p strong {
@@ -73,12 +71,6 @@
   font-size: 18px;
   font-weight: 700;
   color: #1e1e1e;
-}
-
-.subtitulo {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #444;
 }
 
 .productos-lista {
@@ -99,14 +91,6 @@
   border-bottom: none;
 }
 
-.producto-img {
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
 .producto-info {
   display: flex;
   flex-direction: column;
@@ -123,42 +107,67 @@
   color: #666;
 }
 
-/* ===== ICONOS ===== */
-.iconos-compra {
-  color: #1e1e1e;
-  font-size: 25px;
-  margin-right: 20px;
-  transition: color 0.3s ease;
+/* ----------------------------- */
+/* RESPONSIVE */
+/* ----------------------------- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .pedido-card {
+    padding: 20px;
+  }
+
+  .pedido-header h3 {
+    font-size: 20px;
+  }
+
+  .pedido-body p {
+    font-size: 16px;
+  }
 }
 
-.iconos-compra:hover {
-  color: #4DB6AC;
+/* Móviles grandes */
+@media (max-width: 768px) {
+  .pedido-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .pedido-body {
+    padding-bottom: 60px;
+  }
+
+  .pedido-body p {
+    right: 10px;
+    font-size: 15px;
+  }
+
+  .producto-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
-/* ===== BOTONES ===== */
-.btn-light.btn-sm {
-  background-color: #b0ffa7;
-  color: #fff;
-  border-radius: 6px;
-  font-weight: 500;
-  padding: 6px 12px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
+/* Móviles pequeños */
+@media (max-width: 576px) {
+  .titulo {
+    font-size: 26px;
+  }
 
-.btn-light.btn-sm:hover {
-  background-color: #005fa3;
-  transform: scale(1.05);
-}
+  .pedido-card {
+    padding: 18px;
+  }
 
-.btn-outline-danger.btn-sm {
-  border-color: #dc3545;
-  color: #dc3545;
-  font-weight: 500;
-  padding: 6px 12px;
-  transition: all 0.3s ease;
-}
+  .producto-nombre {
+    font-size: 15px;
+  }
 
-.btn-outline-danger.btn-sm:hover {
-  background-color: #dc3545;
-  color: #fff;
+  .producto-detalle {
+    font-size: 13px;
+  }
+
+  .pedido-body p {
+    font-size: 14px;
+  }
 }

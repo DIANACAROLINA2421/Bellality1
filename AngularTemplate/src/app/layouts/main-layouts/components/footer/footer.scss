@@ -1,22 +1,27 @@
 .c-opaco:hover{
   color: rgb(168, 150, 150);
 }
+
 .pago{
   font-size:20px;
 }
 
 .fondo-g{
   background: white;
+}
+
 .boton{
   background-color: #03A9F4;
 }
-}
+
 .ti{
   color: rgba(187, 102, 150, 0.62);
 }
+
 .comentario{
   font-size: 20px;
 }
+
 .fondo-az{
   background: rgba(176, 255, 167, 0.19);
 }
@@ -26,8 +31,8 @@
   background-color: rgb(219, 230, 218);
   border-radius: 50px;
   height: 41px;
-
 }
+
 .v{
   color:black;
 }
@@ -37,20 +42,68 @@
   background: none;
   height: 20px;
   width: 400px;
-
 }
+
 .btn-n{
   border:none;
-
 }
+
 .iconos{
   font-size: 33px;
-}.iconos{
-   font-size: 33px;
- }
+}
+
 .titulo{
   font-weight: bold;
 }
+
 .titulo:hover{
   color: rgb(176, 255, 167);
+}
+
+/* ----------------------------- */
+/* RESPONSIVE */
+/* ----------------------------- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .inp-search {
+    width: 250px;
+  }
+
+  .fondo-g .d-flex {
+    flex-wrap: wrap;
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+  .mi-contenedor,
+  .fondo-az,
+  .fondo-g {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .inp-search {
+    width: 200px;
+  }
+
+  .iconos {
+    justify-content: center;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 576px) {
+  .inp-search {
+    width: 150px;
+  }
+
+  .productos-container {
+    font-size: 24px;
+  }
+
+  .fondo-g .d-flex {
+    gap: 20px;
+  }
 }

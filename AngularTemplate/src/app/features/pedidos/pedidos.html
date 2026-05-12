@@ -22,15 +22,12 @@
                 <ul class="productos-lista">
                     @for (p of pedido.productos; track p.nombre) {
                         <li class="producto-item">
-
-
                             <div class="producto-info">
                                 <span class="producto-nombre">{{ p.nombre }}</span>
                                 <span class="producto-detalle">
                                     (x{{ p.cantidad }}) — {{ p.precio }} €
                                 </span>
                             </div>
-
                         </li>
                     }
                 </ul>

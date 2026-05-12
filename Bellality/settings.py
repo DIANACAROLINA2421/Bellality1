@@ -3,6 +3,7 @@ from pathlib import Path
 from decouple import config
 import os
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("SECRET_KEY", "")
@@ -62,12 +63,13 @@ if DEBUG:
 else:
     CORS_ALLOWED_ORIGINS = [
         "http://localhost:4200",
-        "https://bellality1-production.up.railway.app",
         "https://bellality.netlify.app",
+        "https://bellality1-production.up.railway.app",
     ]
     CSRF_TRUSTED_ORIGINS = [
-        "https://bellality1-production.up.railway.app",
         "https://bellality.netlify.app",
+        "https://bellality1-production.up.railway.app",
+
     ]
 
 CORS_ALLOW_HEADERS = [

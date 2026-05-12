@@ -23,6 +23,149 @@
   object-fit: cover;
 
 }
+.login-container {
+  height: 100vh;
+}
+
+.texto-imagen {
+  position: absolute;
+  top: 97%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #e2ecec;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Baskerville Old Face";
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.left-side {
+  width: 50%;
+}
+
+.side-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.right-side {
+  width: 50%;
+  background: white;
+}
+
+.form-box {
+  width: 70%;
+}
+
+.logo {
+  max-width: 180px;
+}
+
+.iconos i {
+  font-size: 33px;
+  color: #1e1e1e;
+}
+
+.btn-verde {
+  color: black;
+  font-size: 25px;
+  border: 2px solid black;
+  font-family: '', sans-serif;
+  font-style: initial;
+}
+
+.btn-verde:hover {
+  background-color: rgba(75, 239, 51, 0.43);
+}
+
+.activoboton {
+  background-color: rgba(75, 239, 51, 0.43);
+  color: black;
+  border-color: black;
+}
+
+/* ----------------------------- */
+/* RESPONSIVE DESIGN */
+/* ----------------------------- */
+
+/* Tablets (≤ 992px) */
+@media (max-width: 992px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .imagen-izquierda,
+  .right-side {
+    width: 100%;
+  }
+
+  .side-image {
+    height: 350px;
+  }
+
+  .texto-imagen {
+    top: 85%;
+    left: 50%;
+    font-size: 22px;
+  }
+
+  .form-box {
+    width: 85%;
+  }
+
+  .iconos i {
+    font-size: 30px;
+  }
+}
+
+/* Móviles grandes (≤ 768px) */
+@media (max-width: 768px) {
+
+  .side-image {
+    height: 300px;
+  }
+
+  .texto-imagen {
+    font-size: 20px;
+    top: 80%;
+  }
+
+  .form-box {
+    width: 90%;
+  }
+
+  .btn-verde {
+    font-size: 20px;
+  }
+
+  .iconos i {
+    font-size: 28px;
+  }
+}
+
+/* Móviles pequeños (≤ 576px) */
+@media (max-width: 576px) {
+
+  .texto-imagen {
+    font-size: 18px;
+    top: 78%;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .btn-verde {
+    font-size: 18px;
+  }
+
+  .iconos i {
+    font-size: 26px;
+  }
+}
 
 .right-side {
   width: 50%;

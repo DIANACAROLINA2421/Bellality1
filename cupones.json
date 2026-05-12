@@ -1,0 +1,11 @@
+[
+{
+  "model": "Productos.cupon",
+  "pk": 5,
+  "fields": {
+    "codigo": "baxter",
+    "porcentaje": 60,
+    "is_active": true
+  }
+}
+]
