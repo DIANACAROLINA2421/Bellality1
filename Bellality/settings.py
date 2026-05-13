@@ -162,7 +162,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 WHITENOISE_USE_FINDERS = True
 MEDIA_URL = 'https://bellality1-production.up.railway.app/media/'
-MEDIA_ROOT = ASSETS_DIR / 'media'
+
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
