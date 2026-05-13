@@ -1,21 +1,25 @@
-.contenedor{
+.contenedor {
   position: relative;
   width: 100%;
   overflow: hidden;
-  min-height: 500px;
+  height: 500px; /* FIJO en vez de min-height para evitar saltos */
 }
 
-.im-cabecera{
+.im-cabecera {
   width: 100%;
-  height: 100%;
+  height: 100%; /* ocupa exactamente el contenedor */
   display: flex;
 }
 
-.im-cabecera .imagen{
+/* Una sola regla para las imágenes del hero */
+.im-cabecera .imagen {
   width: 25%;
-  height: 100%;
+  height: 100%;    /* altura fija del padre, sin auto */
   object-fit: cover;
+  flex-shrink: 0;
 }
+
+/* ELIMINA la clase .imagen suelta de línea 76 — era el conflicto */
 
 .btn-cabecera {
   margin-top: 2px;
@@ -28,18 +32,18 @@
   border-radius: 60px;
 }
 
-.texto-cabecera{
-  position: absolute;
-  top:25%;
-  left:45%;
-  transform:translate(-50%,-50%);
-  text-align:center;
-  color: #e2ecec;
-  width: 90%;
+.btn-cabecera:hover {
+  background-color: wheat;
 }
 
-.btn-cabecera:hover{
-  background-color:wheat;
+.texto-cabecera {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #e2ecec;
+  width: 90%;
 }
 
 .texto, .texto2, .texto3 {
@@ -48,46 +52,17 @@
   text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
-.categorias-container{
+.categorias-container {
   margin-left: 20px;
   font-size: 50px;
 }
 
-.category-card{
+/* Una sola definición de category-card */
+.category-card {
   background-color: rgb(255, 255, 255);
-  margin-bottom: 50px;
+  margin-bottom: 20px; /* reducido, era 50px duplicado */
   margin-left: 50px;
   margin-right: 50px;
-}
-
-.letr{
-  font-size: 20px;
-  font-family:"Baskerville Old Face";
-}
-
-.category-card:hover .categorias-img{
-  opacity: 0.7;
-}
-
-.o{
-  opacity: 10%;
-}
-
-.imagen{
-  width: 100%;
-  height: auto;
-  object-fit:cover;
-}
-
-.categorias-img, .categorias-imge{
-  width: 100%;
-  height:auto;
-  object-fit: contain;
-  transition: opacity 0.3s ease;
-  border-radius: 10px;
-}
-
-.category-card {
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -96,11 +71,32 @@
   transform: scale(1.03);
 }
 
-.all{
+.category-card:hover .categorias-img {
+  opacity: 0.7;
+}
+
+.letr {
+  font-size: 20px;
+  font-family: "Baskerville Old Face";
+}
+
+.o {
+  opacity: 10%;
+}
+
+.categorias-img, .categorias-imge {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+}
+
+.all {
   margin-left: 30px;
 }
 
-.corazon{
+.corazon {
   color: rgba(95, 182, 95, 0.81);
 }
 
@@ -127,71 +123,30 @@
   color: rgba(255, 0, 0, 0.64);
 }
 
-.carta{
+.carta {
   margin-bottom: 50px;
 }
 
-/* ----------------------------- */
 /* RESPONSIVE */
-/* ----------------------------- */
-
 @media (max-width: 992px) {
-  .im-cabecera .imagen {
-    width: 50%;
-  }
-
-  .texto-cabecera {
-    top: 30%;
-    left: 50%;
-  }
-
-  .category-card {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
+  .im-cabecera .imagen { width: 50%; }
+  .texto-cabecera { top: 30%; left: 50%; }
+  .category-card { margin-left: 10px; margin-right: 10px; }
 }
 
 @media (max-width: 768px) {
-  .im-cabecera {
-    flex-wrap: wrap;
-  }
-
-  .im-cabecera .imagen {
-    width: 50%;
-    height: 200px;
-  }
-
-  .texto-cabecera {
-    top: 40%;
-    left: 50%;
-  }
-
-  .categorias-container {
-    font-size: 30px;
-  }
+  .contenedor { height: 300px; } /* ajusta altura del hero */
+  .im-cabecera { flex-wrap: wrap; }
+  .im-cabecera .imagen { width: 50%; height: 150px; }
+  .texto-cabecera { top: 40%; left: 50%; }
+  .categorias-container { font-size: 30px; }
 }
 
 @media (max-width: 576px) {
-  .im-cabecera .imagen {
-    width: 100%;
-    height: 180px;
-  }
-
-  .texto-cabecera {
-    top: 45%;
-    left: 50%;
-  }
-
-  .texto, .texto2, .texto3 {
-    font-size: 16px;
-  }
-
-  .categorias-container {
-    font-size: 24px;
-  }
-
-  .category-card {
-    margin-left: 0;
-    margin-right: 0;
-  }
+  .contenedor { height: 220px; }
+  .im-cabecera .imagen { width: 100%; height: 180px; }
+  .texto-cabecera { top: 45%; left: 50%; }
+  .texto, .texto2, .texto3 { font-size: 16px; }
+  .categorias-container { font-size: 24px; }
+  .category-card { margin-left: 0; margin-right: 0; }
 }
