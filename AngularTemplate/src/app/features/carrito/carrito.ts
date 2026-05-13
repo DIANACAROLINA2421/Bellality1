@@ -61,14 +61,14 @@ export class Carrito {
 
                 console.log('Respuesta del backend:', resp);
 
-                const data = resp.body;
+                const data = resp; // ← corregido: ya no usamos resp.body
 
                 if (data && data.success === true && data.data) {
 
                     const porcentaje = data.data.porcentaje;
 
-                    const descuentoCalculado =
-                        (this.subtotal() + this.iva()) * (porcentaje / 100);
+                    // ← corregido: descuento solo sobre el subtotal
+                    const descuentoCalculado = this.subtotal() * (porcentaje / 100);
 
                     this.carritoService.descuento.set(descuentoCalculado);
                     this.carritoService.cuponAplicado.set(data.data.codigo);
