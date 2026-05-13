@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "AngularTemplate/angular.json",
+      "use": "@vercel/angular"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "AngularTemplate/dist/TemplateAngular/browser/index.html"
+    }
+  ]
+}
