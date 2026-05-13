@@ -20,11 +20,11 @@ export class Productos implements OnInit {
     private alertService = inject(AlertasService);
     private route = inject(ActivatedRoute);
 
-    // Construye la URL completa de la imagen
     getImagenUrl(imagen: string): string {
         if (!imagen) return '/images/placeholder.jpg';
-        if (imagen.startsWith('http')) return imagen; // ya es URL completa
-        return `${environment.apiURL.replace('/api', '')}/media/${imagen}`;
+        if (imagen.startsWith('http')) return imagen;
+        const base = environment.apiURL.replace('/api/', '').replace('/api', '');
+        return `${base}/media/${imagen}`;
     }
 
     onImageError(event: Event) {
