@@ -4,24 +4,24 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class LoginServices {
 
-  private URL = environment.apiURL;
+    private URL = environment.apiURL;
 
-  constructor(private http: HttpClient) {
+    constructor(private http: HttpClient) {
 
-  }
-
-  postLogin(datos:any){
-    return this.http.post<any>(`${this.URL}/login/`,datos)
-  }
-
-  logout() {
-    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-        localStorage.removeItem('user');
-        localStorage.removeItem('access_token');
     }
-  }
+
+    postLogin(datos:any){
+        return this.http.post<any>(`${this.URL}/login/`,datos)
+    }
+
+    logout() {
+        if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+            localStorage.removeItem('user');
+            localStorage.removeItem('access_token');
+        }
+    }
 }

@@ -39,7 +39,7 @@ export class Carrito {
     }
 
     aplicarCupon() {
-        // Evitar aplicar dos cupones
+
         if (this.cuponAplicado()) {
             this.alertService.alert(
                 'Cupón ya aplicado',
@@ -58,28 +58,34 @@ export class Carrito {
 
         this.carritoService.aplicarCupon(codigo).subscribe({
             next: (resp) => {
+
                 console.log('Respuesta del backend:', resp);
 
-                // ✅ Verificación robusta
-                if (resp && resp.success === true && resp.data) {
-                    const porcentaje = resp.data.porcentaje;
+                const data = resp.body;
+
+                if (data && data.success === true && data.data) {
+
+                    const porcentaje = data.data.porcentaje;
+
                     const descuentoCalculado =
                         (this.subtotal() + this.iva()) * (porcentaje / 100);
 
                     this.carritoService.descuento.set(descuentoCalculado);
-                    this.carritoService.cuponAplicado.set(resp.data.codigo);
+                    this.carritoService.cuponAplicado.set(data.data.codigo);
 
-                    this.cuponCodigo = ''; // limpiar input
+                    this.cuponCodigo = '';
 
                     this.alertService.alert(
                         'Éxito',
-                        `Cupón "${resp.data.codigo}" aplicado correctamente (${porcentaje}% de descuento)`,
+                        `Cupón "${data.data.codigo}" aplicado correctamente (${porcentaje}% de descuento)`,
                         'success'
                     );
+
                 } else {
                     this.alertService.alert('Error', 'Cupón inválido', 'error');
                 }
             },
+
             error: (err) => {
                 console.error('Error al verificar el cupón:', err);
                 this.alertService.alert('Error', 'Cupón inválido', 'error');

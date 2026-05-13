@@ -3,7 +3,7 @@
   "model": "Productos.cupon",
   "pk": 5,
   "fields": {
-    "codigo": "baxter",
+    "codigo": "diana",
     "porcentaje": 60,
     "is_active": true
   }
