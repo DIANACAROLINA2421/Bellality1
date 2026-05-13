@@ -63,15 +63,14 @@ if DEBUG:
     ]
 else:
     CORS_ALLOWED_ORIGINS = [
-        "http://localhost:4200",
-        "https://bellality.netlify.app",
-        "https://bellality1-production.up.railway.app",
+        "https://bellality1.vercel.app",
+        "https://bellality1-ol19kbw81-bellality-s-projects.vercel.app",
     ]
     CSRF_TRUSTED_ORIGINS = [
-        "https://bellality.netlify.app",
-        "https://bellality1-production.up.railway.app",
-
+        "https://bellality1.vercel.app",
+        "https://bellality1-ol19kbw81-bellality-s-projects.vercel.app",
     ]
+
 
 CORS_ALLOW_HEADERS = [
     'accept',
@@ -160,9 +159,9 @@ ASSETS_DIR = BASE_DIR / 'assets'
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-# Opcional: Esto ayuda si tienes problemas con archivos que no se encuentran
+
 WHITENOISE_USE_FINDERS = True
-MEDIA_URL = '/media/'
+MEDIA_URL = 'https://bellality1-production.up.railway.app/media/'
 MEDIA_ROOT = ASSETS_DIR / 'media'
 
 AUTHENTICATION_BACKENDS = [
