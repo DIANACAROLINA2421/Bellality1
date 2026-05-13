@@ -1,7 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-
 
 export interface ItemCarrito {
     nombre: string;
@@ -16,7 +14,7 @@ export interface ItemCarrito {
 })
 export class CarritoService {
 
-    private API_URL = `${environment.apiURL}cupon/`;
+    private API_URL = 'https://bellality1-production.up.railway.app/api/cupon/';
 
     constructor(private http: HttpClient) {}
 
