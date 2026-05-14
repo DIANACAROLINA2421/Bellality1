@@ -57,7 +57,7 @@ SIMPLE_JWT = {
 # CORS CONFIG
 # -----------------------------
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
 
 if DEBUG:
     CORS_ALLOWED_ORIGINS = [
