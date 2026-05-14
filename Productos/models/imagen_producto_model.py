@@ -16,4 +16,3 @@ class ImagenProducto(models.Model):
     def __str__(self):
         return f"[IMAGEN DEL PRODUCTO: {self.product.nombre}]"
 
-   
