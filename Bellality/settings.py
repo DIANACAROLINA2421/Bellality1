@@ -25,14 +25,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    # ✅ cloudinary_storage DEBE ir ANTES de django.contrib.staticfiles
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
     'rest_framework',
     'rest_framework_simplejwt',
     'Users',
     'Productos',
-    # ✅ Cloudinary — el orden importa
-    'cloudinary_storage',
-    'cloudinary',
 ]
 
 REST_FRAMEWORK = {
