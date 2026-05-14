@@ -3,7 +3,6 @@ from pathlib import Path
 from decouple import config
 import os
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("SECRET_KEY", "")
@@ -51,6 +50,9 @@ SIMPLE_JWT = {
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
 }
 
+# -----------------------------
+# CORS CONFIG
+# -----------------------------
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_ALL_ORIGINS = False
 
@@ -71,7 +73,6 @@ else:
         "https://bellality1-ol19kbw81-bellality-s-projects.vercel.app",
     ]
 
-
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',
@@ -88,6 +89,9 @@ CORS_ALLOW_METHODS = [
     'DELETE', 'GET', 'OPTIONS', 'PATCH', 'POST', 'PUT',
 ]
 
+# -----------------------------
+# MIDDLEWARE
+# -----------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -119,7 +123,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Bellality.wsgi.application'
 
-# BASE DE DATOS
+# -----------------------------
+# DATABASE
+# -----------------------------
 if os.environ.get('RAILWAY_ENVIRONMENT'):
     DATABASES = {
         'default': {
@@ -155,16 +161,19 @@ TIME_ZONE = 'Europe/Madrid'
 USE_I18N = True
 USE_TZ = True
 
+# -----------------------------
+# STATIC & MEDIA
+# -----------------------------
 ASSETS_DIR = BASE_DIR / 'assets'
+
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
 WHITENOISE_USE_FINDERS = True
+
+# 🔥 MEDIA FIX (FUNCIONA EN RAILWAY)
 MEDIA_URL = 'https://bellality1-production.up.railway.app/media/'
-
 MEDIA_ROOT = BASE_DIR / 'media'
-
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
