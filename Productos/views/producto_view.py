@@ -11,9 +11,10 @@ class ProductoView(APIView):
 
     def get(self, request):
         categoria_slug = request.query_params.get('categoria', None)
-        
+
         if categoria_slug:
-            productos = Productos.objects.filter(is_active=True, categoria__slug=categoria_slug).order_by("-categoria", "nombre")
+            productos = Productos.objects.filter(is_active=True, categoria__slug=categoria_slug).order_by("-categoria",
+                                                                                                          "nombre")
         else:
             productos = Productos.objects.filter(is_active=True).order_by("-categoria", "nombre")
 
@@ -25,7 +26,7 @@ class ProductoView(APIView):
                 "nombre_categoria": producto.categoria.nombre,
                 "slug_categoria": producto.categoria.slug,
                 "slug_producto": producto.slug,
-                "imagen": request.build_absolute_uri(producto.image.image.url)
+                "imagen": producto.image.image.url
                 if hasattr(producto, "image") and producto.image.image
                 else ""
 
