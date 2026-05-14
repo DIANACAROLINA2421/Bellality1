@@ -20,6 +20,18 @@
             <span><hr class="o"></span>
         </div>
 
+        <!-- ✅ CUPÓN — solo visible si el usuario está logeado -->
+        @if (isLogged) {
+            <div class="codigo-descuento text-center p-4 my-4 rounded shadow">
+                <h3 class="fw-bold"> Código de descuento exclusivo</h3>
+                <p class="fs-4">Usa este código en tu compra:</p>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                    <span class="codigo-box px-4 py-2 rounded">{{ codigoDescuento }}</span>
+                    <button class="btn btn-dark" (click)="copiarCodigo()">Copiar</button>
+                </div>
+            </div>
+        }
+
         <div class="categorias-container py-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h3 class="fw-bold">All Category:</h3>
@@ -31,8 +43,9 @@
                 <div class="col-6 col-md-3" routerLink="/productos/{{categoria.slug}}">
                     <div class="category-card text-center p-3 rounded shadow-sm rounded-5 d-flex flex-column align-items-center">
 
+                        <!-- ✅ [src] con getImagenUrl -->
                         <img
-
+                                [src]="getImagenUrl(categoria.image)"
                                 (error)="onImageError($event)"
                                 alt="{{ categoria.nombre }}"
                                 class="categorias-img mb-3"

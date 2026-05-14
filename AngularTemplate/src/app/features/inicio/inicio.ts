@@ -1,6 +1,7 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { CategoriasService } from "../../core/services/categorias/categorias-service";
+import { LoginServices } from "../../core/services/login/login.services"; // ✅ nombre correcto
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -10,8 +11,13 @@ import { environment } from '../../../environments/environment';
     styleUrl: './inicio.scss',
 })
 export class Inicio implements OnInit {
+
     protected categorias = signal<any[]>([]);
     private categoriaService = inject(CategoriasService);
+    private loginService = inject(LoginServices); // ✅ nombre correcto
+
+    isLogged = false;
+    codigoDescuento = "diana";
 
     getImagenUrl(imagen: string): string {
         if (!imagen) return '/images/placeholder.jpg';
@@ -26,14 +32,21 @@ export class Inicio implements OnInit {
     }
 
     ngOnInit() {
+        this.isLogged = this.loginService.isLogged(); // ✅ método correcto
+
         this.categoriaService.get().subscribe({
             next: (categorias) => {
-                // El servicio ya hace map(res => res.data), así que recibimos el array directamente
                 this.categorias.set(categorias);
             },
             error: (error) => {
                 console.error('Error al cargar categorías:', error);
             }
+        });
+    }
+
+    copiarCodigo() {
+        navigator.clipboard.writeText(this.codigoDescuento).then(() => {
+            alert('✅ Código copiado: ' + this.codigoDescuento);
         });
     }
 }
