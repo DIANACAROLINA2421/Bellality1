@@ -1,7 +1,7 @@
 /* ================================
    CONTENEDOR GENERAL
 ================================ */
-.contenedor{
+.contenedor {
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -63,21 +63,21 @@
 /* ================================
    CABECERA CON IMÁGENES
 ================================ */
-.im-cabecera{
+.im-cabecera {
   width: 100%;
   height: 100%;
   display: flex;
 }
 
-.im-cabecera .imagen{
+.im-cabecera .imagen {
   width: 25%;
   height: 100%;
   object-fit: cover;
 }
 
-.texto-cabecera{
+.texto-cabecera {
   position: absolute;
-  top: 400%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -100,11 +100,13 @@
   transition: 0.3s ease;
 }
 
-.btn-cabecera:hover{
+.btn-cabecera:hover {
   background-color: wheat;
 }
 
-.texto, .texto2, .texto3 {
+.texto,
+.texto2,
+.texto3 {
   font-size: 22px;
   font-weight: bold;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
@@ -113,7 +115,7 @@
 /* ================================
    CATEGORÍAS COMO BOTONES
 ================================ */
-.categoria-boton {
+.category-card {
   background: #ffffff;
   border: 2px solid #e5e5e5;
   padding: 15px;
@@ -126,27 +128,26 @@
   align-items: center;
 }
 
-.categoria-boton:hover {
+.category-card:hover {
   background: #f5f5f5;
   border-color: #bdbdbd;
   transform: translateY(-3px);
 }
 
-
-
-.nombre-cat {
+.letr {
   font-size: 18px;
   color: #333;
 }
 
-.corazon{
+.corazon {
   color: rgba(95, 182, 95, 0.81);
   font-size: 20px;
 }
 
-.categorias-container{
+.categorias-container {
   margin-left: 20px;
   font-size: 50px;
+  cursor: pointer;
 }
 
 /* ================================
@@ -175,11 +176,11 @@
   color: rgba(255, 0, 0, 0.64);
 }
 
-.carta{
+.carta {
   margin-bottom: 50px;
 }
 
-.o{
+.o {
   opacity: 10%;
 }
 
