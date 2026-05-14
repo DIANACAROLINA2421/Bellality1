@@ -1,17 +1,15 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { CategoriasService } from "../../core/services/categorias/categorias-service";
 import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-inicio',
-    imports: [
-        RouterLink
-    ],
+    imports: [RouterLink],
     templateUrl: './inicio.html',
     styleUrl: './inicio.scss',
 })
-export class Inicio {
+export class Inicio implements OnInit {
     protected categorias = signal<any[]>([]);
     private categoriaService = inject(CategoriasService);
 
@@ -29,11 +27,12 @@ export class Inicio {
 
     ngOnInit() {
         this.categoriaService.get().subscribe({
-            next: response => {
-                this.categorias.set(response.data);
+            next: (categorias) => {
+                // El servicio ya hace map(res => res.data), así que recibimos el array directamente
+                this.categorias.set(categorias);
             },
-            error: error => {
-                console.log(error);
+            error: (error) => {
+                console.error('Error al cargar categorías:', error);
             }
         });
     }
