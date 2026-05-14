@@ -1,13 +1,16 @@
+/* ================================
+   CONTENEDOR GENERAL
+================================ */
 .contenedor{
   position: relative;
   width: 100%;
   overflow: hidden;
   min-height: 500px;
 }
-/* ================================
-   CUPÓN EXCLUSIVO PARA LOGEADOS
-================================ */
 
+/* ================================
+   CUPÓN EXCLUSIVO
+================================ */
 .codigo-descuento {
   background: #f8f9fa;
   border-left: 6px solid #66BB6A;
@@ -51,32 +54,15 @@
   border-radius: 8px;
 }
 
-/* Animación suave */
+/* Animación */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
-@media (max-width: 576px) {
-  .codigo-descuento {
-    padding: 20px;
-  }
-
-  .codigo-box {
-    font-size: 18px;
-    padding: 8px 20px;
-  }
-}
-
-
-/* IMÁGENES CABECERA */
+/* ================================
+   CABECERA CON IMÁGENES
+================================ */
 .im-cabecera{
   width: 100%;
   height: 100%;
@@ -88,7 +74,6 @@
   height: 100%;
   object-fit: cover;
 }
-
 
 .texto-cabecera{
   position: absolute;
@@ -103,7 +88,6 @@
   align-items: center;
   gap: 12px;
 }
-
 
 .btn-cabecera {
   padding: 12px 35px;
@@ -120,70 +104,54 @@
   background-color: wheat;
 }
 
-
 .texto, .texto2, .texto3 {
   font-size: 22px;
   font-weight: bold;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
+/* ================================
+   CATEGORÍAS COMO BOTONES
+================================ */
+.categoria-boton {
+  background: #ffffff;
+  border: 2px solid #e5e5e5;
+  padding: 15px;
+  border-radius: 18px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categoria-boton:hover {
+  background: #f5f5f5;
+  border-color: #bdbdbd;
+  transform: translateY(-3px);
+}
+
+
+
+.nombre-cat {
+  font-size: 18px;
+  color: #333;
+}
+
+.corazon{
+  color: rgba(95, 182, 95, 0.81);
+  font-size: 20px;
+}
 
 .categorias-container{
   margin-left: 20px;
   font-size: 50px;
 }
 
-.category-card{
-  background-color: rgb(255, 255, 255);
-  margin-bottom: 80px;
-  margin-left: 50px;
-  margin-right: 50px;
-}
-
-.letr{
-  font-size: 20px;
-  font-family:"Baskerville Old Face";
-}
-
-.category-card:hover .categorias-img{
-  opacity: 0.7;
-}
-
-.o{
-  opacity: 10%;
-}
-
-.imagen{
-  width: 100%;
-  height: auto;
-  object-fit:cover;
-}
-
-.categorias-img, .categorias-imge{
-  width: 100%;
-  height:auto;
-  object-fit: contain;
-  transition: opacity 0.3s ease;
-  border-radius: 10px;
-}
-
-.category-card {
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.category-card:hover {
-  transform: scale(1.03);
-}
-
-.all{
-  margin-left: 30px;
-}
-
-.corazon{
-  color: rgba(95, 182, 95, 0.81);
-}
-
+/* ================================
+   PRODUCTOS CON DESCUENTO
+================================ */
 .comprar-ya {
   background-color: #e63946;
   color: #fff;
@@ -211,67 +179,28 @@
   margin-bottom: 50px;
 }
 
-/* ----------------------------- */
-/* RESPONSIVE */
-/* ----------------------------- */
+.o{
+  opacity: 10%;
+}
 
+/* ================================
+   RESPONSIVE
+================================ */
 @media (max-width: 992px) {
-  .im-cabecera .imagen {
-    width: 50%;
-  }
-
-  .texto-cabecera {
-    top: 30%;
-    left: 50%;
-  }
-
-  .category-card {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
+  .im-cabecera .imagen { width: 50%; }
+  .texto-cabecera { top: 30%; }
 }
 
 @media (max-width: 768px) {
-  .im-cabecera {
-    flex-wrap: wrap;
-  }
-
-  .im-cabecera .imagen {
-    width: 50%;
-    height: 200px;
-  }
-
-  .texto-cabecera {
-    top: 40%;
-    left: 50%;
-  }
-
-  .categorias-container {
-    font-size: 30px;
-  }
+  .im-cabecera { flex-wrap: wrap; }
+  .im-cabecera .imagen { width: 50%; height: 200px; }
+  .texto-cabecera { top: 40%; }
+  .categorias-container { font-size: 30px; }
 }
 
 @media (max-width: 576px) {
-  .im-cabecera .imagen {
-    width: 100%;
-    height: 180px;
-  }
-
-  .texto-cabecera {
-    top: 45%;
-    left: 50%;
-  }
-
-  .texto, .texto2, .texto3 {
-    font-size: 16px;
-  }
-
-  .categorias-container {
-    font-size: 24px;
-  }
-
-  .category-card {
-    margin-left: 0;
-    margin-right: 0;
-  }
+  .im-cabecera .imagen { width: 100%; height: 180px; }
+  .texto-cabecera { top: 45%; }
+  .texto, .texto2, .texto3 { font-size: 16px; }
+  .categorias-container { font-size: 24px; }
 }
