@@ -16,10 +16,4 @@ class ImagenProducto(models.Model):
     def __str__(self):
         return f"[IMAGEN DEL PRODUCTO: {self.product.nombre}]"
 
-    def save(self, *args, **kwargs):
-        if self.image:
-            # nombre.extension
-            nombre_imagen = self.product.slug
-            extension = self.image.name.split(".")[-1]
-            self.image.name = f"{nombre_imagen}.{extension}"
-        super().save(*args, **kwargs)
+   
