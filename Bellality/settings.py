@@ -29,7 +29,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'Users',
-    'Productos'
+    'Productos',
+    # ✅ Cloudinary — el orden importa
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 REST_FRAMEWORK = {
@@ -162,7 +165,7 @@ USE_I18N = True
 USE_TZ = True
 
 # -----------------------------
-# STATIC & MEDIA
+# STATIC FILES (WhiteNoise)
 # -----------------------------
 ASSETS_DIR = BASE_DIR / 'assets'
 
@@ -171,10 +174,21 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 WHITENOISE_USE_FINDERS = True
 
-# 🔥 MEDIA FIX (FUNCIONA EN RAILWAY)
-MEDIA_URL = 'https://bellality1-production.up.railway.app/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# -----------------------------
+# ✅ CLOUDINARY — almacenamiento persistente para imágenes
+# -----------------------------
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+}
 
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# -----------------------------
+# AUTH
+# -----------------------------
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
