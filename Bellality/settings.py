@@ -135,7 +135,7 @@ if os.environ.get('RAILWAY_ENVIRONMENT'):
             'NAME': config('DB_NAME', default='railway'),
             'USER': config('DB_USER', default='root'),
             'PASSWORD': config('DB_PASSWORD'),
-            'HOST': config('DB_HOST', default='mysql.railway.internal'),
+            'HOST': config('DB_HOST', default='mysql-vaug.railway.internal'),
             'PORT': config('DB_PORT', default='3306'),
             'OPTIONS': {
                 'charset': 'utf8mb4',
