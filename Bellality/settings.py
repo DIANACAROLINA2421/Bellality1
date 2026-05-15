@@ -25,9 +25,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',        # ✅ ANTES de staticfiles
+    # ✅ cloudinary_storage DEBE ir ANTES de django.contrib.staticfiles
+    'cloudinary_storage',
     'django.contrib.staticfiles',
-    'cloudinary',                # ✅ DESPUÉS de staticfiles
+    'cloudinary',
     'rest_framework',
     'rest_framework_simplejwt',
     'Users',
@@ -166,13 +167,15 @@ USE_TZ = True
 # -----------------------------
 # STATIC FILES (WhiteNoise)
 # -----------------------------
+ASSETS_DIR = BASE_DIR / 'assets'
+
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 WHITENOISE_USE_FINDERS = True
 
 # -----------------------------
-# CLOUDINARY — imágenes en producción, local en desarrollo
+# ✅ CLOUDINARY — almacenamiento persistente para imágenes
 # -----------------------------
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
@@ -181,12 +184,8 @@ CLOUDINARY_STORAGE = {
 }
 
 MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-if os.environ.get('RAILWAY_ENVIRONMENT'):
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-else:
-    MEDIA_ROOT = BASE_DIR / 'media'
-    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 # -----------------------------
 # AUTH
 # -----------------------------
