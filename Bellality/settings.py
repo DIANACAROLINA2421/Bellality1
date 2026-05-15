@@ -128,7 +128,7 @@ WSGI_APPLICATION = 'Bellality.wsgi.application'
 # -----------------------------
 # DATABASE
 # -----------------------------
-if os.environ.get('RAILWAY_ENVIRONMENT'):
+if not DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
