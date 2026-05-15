@@ -21,15 +21,12 @@ class ProductoView(APIView):
 
         data = []
         for producto in productos:
+
+            # ⭐ CloudinaryField devuelve la URL directamente
             imagen_url = ""
-            if hasattr(producto, "image") and producto.image and producto.image.image:
-                url = producto.image.image.url
-                # Si Cloudinary devuelve URL completa, úsala directamente
-                if url.startswith("http"):
-                    imagen_url = url
-                else:
-                    # Fallback: construir URL absoluta solo si no es Cloudinary
-                    imagen_url = request.build_absolute_uri(url)
+            if producto.imagen:
+                url = producto.imagen.url
+                imagen_url = url if url.startswith("http") else request.build_absolute_uri(url)
 
             data.append({
                 "nombre": producto.nombre,

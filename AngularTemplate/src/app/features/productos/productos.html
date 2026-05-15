@@ -25,7 +25,7 @@
                 <button class="btn btn-outline-dark"
                         [routerLink]="['/productos', categoria.slug]"
                         routerLinkActive="active">
-                    {{categoria.nombre}}
+                    {{ categoria.nombre }}
                 </button>
             }
         </div>
@@ -37,19 +37,29 @@
             <div class="col-6 col-md-2 d-flex">
 
                 <div class="productos-card text-center p-3 rounded shadow-sm rounded-5 d-flex flex-column w-100">
+
+                    <!-- ⭐ Imagen Cloudinary o placeholder -->
                     <img
                             [src]="getImagenUrl(producto.imagen)"
                             (error)="onImageError($event)"
                             class="pro-imagen mb-3">
-                    <h3 class="p_titulo">{{producto.nombre}}</h3>
-                    <p class="defi flex-grow-1">{{producto.descripcion}}</p>
-                    <p class="precio text-danger">{{producto.precio}}€</p>
+
+                    <h3 class="p_titulo">{{ producto.nombre }}</h3>
+
+                    <p class="defi flex-grow-1">
+                        {{ producto.descripcion }}
+                    </p>
+
+                    <p class="precio text-danger">
+                        {{ producto.precio }}€
+                    </p>
 
                     <div>
                         <button (click)="anadirCarrito(producto)" class="botonCompra btn">
                             Añadir carrito <i class="carrito bi bi-cart3"></i>
                         </button>
                     </div>
+
                 </div>
 
             </div>
