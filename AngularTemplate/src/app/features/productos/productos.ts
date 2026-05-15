@@ -20,17 +20,21 @@ export class Productos implements OnInit {
     private alertService = inject(AlertasService);
     private route = inject(ActivatedRoute);
 
-    // Construye la URL completa de la imagen
+    // Construye la URL correcta según tu backend
     getImagenUrl(imagen: string): string {
-        if (!imagen) return '/images/placeholder.jpg';
-        if (imagen.startsWith('http')) return imagen; // ya es URL completa
+        if (!imagen) return '/public/images/placeholder.jpg';
+
+        // Si ya es URL completa
+        if (imagen.startsWith('http')) return imagen;
+
+        // Si viene del backend (Django /media/)
         return `${environment.apiURL.replace('/api', '')}/media/${imagen}`;
     }
 
     onImageError(event: Event) {
         const img = event.target as HTMLImageElement;
-        img.src = '/images/placeholder.jpg';
-        img.onerror = null;
+        img.src = '/public/images/placeholder.jpg';
+        img.onerror = null; // evita bucles infinitos
     }
 
     anadirCarrito(producto: any) {

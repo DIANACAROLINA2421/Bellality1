@@ -26,6 +26,7 @@
   background-color: #fff;
   margin-bottom: 40px;
   height: 100%;
+  width: 100%;
   border-radius: 15px;
   padding: 15px;
   transition: transform .2s ease, box-shadow .2s ease;
@@ -33,15 +34,15 @@
 
 .productos-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .botonCompra {
   background-color: black;
-  font-size: 20px;
+  font-size: 14px;
   color: white;
   border: none;
-  padding: 15px 32px;
+  padding: 10px 16px;
   border-radius: 10px;
   cursor: pointer;
   width: 100%;
@@ -54,16 +55,27 @@
 }
 
 .carrito {
-  font-size: 30px;
+  font-size: 18px;
 }
 
 .precio {
-  font-size: 30px;
+  font-size: 20px;
+}
+
+.p_titulo {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.defi {
+  font-size: 12px;
+  color: #666;
 }
 
 .pro-imagen {
   width: 100%;
-  height: 400px;
+  height: 180px;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -76,16 +88,10 @@
   color: #d38f6d;
 }
 
-/* Asegura que las columnas se alineen correctamente */
 .row {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-}
-
-.col-6,
-.col-md-3 {
-  display: flex;
 }
 
 /* ================================
@@ -104,7 +110,7 @@
   }
 
   .pro-imagen {
-    height: 320px;
+    height: 160px;
   }
 }
 
@@ -121,12 +127,12 @@
   }
 
   .pro-imagen {
-    height: 260px;
+    height: 140px;
   }
 
   .botonCompra {
-    font-size: 18px;
-    padding: 12px 20px;
+    font-size: 12px;
+    padding: 8px 12px;
   }
 }
 
@@ -143,15 +149,15 @@
   }
 
   .pro-imagen {
-    height: 220px;
+    height: 130px;
   }
 
   .precio {
-    font-size: 24px;
+    font-size: 16px;
   }
 
   .botonCompra {
-    font-size: 16px;
-    padding: 10px 16px;
+    font-size: 11px;
+    padding: 8px 10px;
   }
 }
