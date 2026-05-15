@@ -128,7 +128,7 @@ WSGI_APPLICATION = 'Bellality.wsgi.application'
 # -----------------------------
 # DATABASE
 # -----------------------------
-if not DEBUG:
+if os.environ.get('RAILWAY_ENVIRONMENT'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -182,14 +182,11 @@ CLOUDINARY_STORAGE = {
 
 MEDIA_URL = '/media/'
 
-if not DEBUG:
-    # ✅ Producción: imágenes en Cloudinary
+if os.environ.get('RAILWAY_ENVIRONMENT'):
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 else:
-    # ✅ Desarrollo: imágenes en local
     MEDIA_ROOT = BASE_DIR / 'media'
     DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-
 # -----------------------------
 # AUTH
 # -----------------------------
