@@ -23,13 +23,11 @@ export class Productos implements OnInit {
 
     // Construye la URL correcta según tu backend
     getImagenUrl(imagen: string): string {
-        if (!imagen) return '/public/images/placeholder.jpg';
-
-        // Si ya es URL completa
-        if (imagen.startsWith('http')) return imagen;
-
-        // Si viene del backend (Django /media/)
-        return `${environment.apiURL.replace('/api', '')}/media/${imagen}`;
+        if (!imagen || imagen.trim() === '') {
+            return '/public/images/placeholder.jpg';
+        }
+        // Cloudinary siempre devuelve URL completa (https://res.cloudinary.com/...)
+        return imagen;
     }
 
     onImageError(event: Event) {
