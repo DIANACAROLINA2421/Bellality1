@@ -6,19 +6,21 @@ from django.utils.text import slugify
 class Productos(models.Model):
     nombre = models.CharField(max_length=100, null=False, blank=False, unique=True, verbose_name="Nombre")
     precio = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False, verbose_name="Precio")
+    imagen_url = models.URLField(max_length=500, null=True, blank=True, verbose_name="URL de imagen")  # ← nuevo
 
     categoria = models.ForeignKey("Categoria", on_delete=models.CASCADE)
     descripcion = models.TextField(verbose_name="descripción", max_length=500)
     slug = models.SlugField(max_length=100, unique=True, null=True, blank=True, verbose_name="Slug")
     is_active = models.BooleanField(default=True, verbose_name="¿Está activo?")
 
+    # ... resto del modelo sin cambios
     class Meta:
         db_table = 'productos'
         verbose_name = "Producto"
         verbose_name_plural = "Productos"
         ordering = ['-categoria__nombre', '-nombre']
 
-    def __str__(self):
+    def _str_(self):
         return f"[PRODUCTO: {self.nombre} - {self.precio} - {self.categoria.nombre}]"
 
     def save(self, *args, **kwargs):
