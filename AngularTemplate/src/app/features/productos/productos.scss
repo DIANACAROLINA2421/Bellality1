@@ -73,16 +73,9 @@
   color: #666;
 }
 
-.pro-imagen-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
 .pro-imagen {
-  width: 75%;
-  height: 140px;
+  width: 100%;
+  height: 180px;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -117,7 +110,7 @@
   }
 
   .pro-imagen {
-    height: 120px;
+    height: 160px;
   }
 }
 
@@ -134,7 +127,7 @@
   }
 
   .pro-imagen {
-    height: 110px;
+    height: 140px;
   }
 
   .botonCompra {
@@ -156,7 +149,7 @@
   }
 
   .pro-imagen {
-    height: 100px;
+    height: 130px;
   }
 
   .precio {
