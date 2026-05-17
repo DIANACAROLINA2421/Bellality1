@@ -3,7 +3,6 @@ import { ProductsService } from "../../core/services/productos/productos.service
 import { ActivatedRoute, RouterLink, RouterLinkActive } from "@angular/router";
 import { AlertasService } from "../../core/utils/alertas.service";
 import { CarritoService } from "../../core/services/carrito/carrito.service";
-import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-productos',
@@ -20,21 +19,15 @@ export class Productos implements OnInit {
     private alertService = inject(AlertasService);
     private route = inject(ActivatedRoute);
 
-    // Construye la URL correcta según tu backend
-    getImagenUrl(imagen: string): string {
-        if (!imagen) return '/public/images/placeholder.jpg';
-
-        // Si ya es URL completa
-        if (imagen.startsWith('http')) return imagen;
-
-        // Si viene del backend (Django /media/)
-        return `${environment.apiURL.replace('/api', '')}/media/${imagen}`;
+    getImagenUrl(imagen_url: string): string {
+        if (!imagen_url) return '/public/images/placeholder.jpg';
+        return imagen_url; // ← ya es una URL completa, no hay que construir nada
     }
 
     onImageError(event: Event) {
         const img = event.target as HTMLImageElement;
         img.src = '/public/images/placeholder.jpg';
-        img.onerror = null; // evita bucles infinitos
+        img.onerror = null;
     }
 
     anadirCarrito(producto: any) {
@@ -45,11 +38,7 @@ export class Productos implements OnInit {
     ngOnInit() {
         this.productsService.getCategorias().subscribe({
             next: (response) => {
-                if (response.data) {
-                    this.categorias.set(response.data);
-                } else {
-                    this.categorias.set(response);
-                }
+                this.categorias.set(response.data ?? response);
             },
             error: (error) => console.error('Error al cargar categorias:', error)
         });
@@ -58,11 +47,7 @@ export class Productos implements OnInit {
             const slug = params['slug'];
             this.productsService.getProductos(slug).subscribe({
                 next: (response) => {
-                    if (response.success) {
-                        this.productos.set(response.data);
-                    } else if (response.data) {
-                        this.productos.set(response.data);
-                    }
+                    this.productos.set(response.data ?? []);
                 },
                 error: (error) => console.error('Error al cargar productos:', error)
             });
