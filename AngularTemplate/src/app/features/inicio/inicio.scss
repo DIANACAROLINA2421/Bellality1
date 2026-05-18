@@ -184,6 +184,27 @@
   opacity: 10%;
 }
 
+.likes-container {
+  text-align: center;
+}
+
+.btn-like {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.btn-like:hover {
+  background: #ff1e4d;
+  transform: scale(1.05);
+}
+
+
 /* ================================
    RESPONSIVE
 ================================ */
