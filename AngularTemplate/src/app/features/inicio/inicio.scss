@@ -183,26 +183,62 @@
 .o {
   opacity: 10%;
 }
-
-.likes-container {
-  text-align: center;
-}
-
+/* 🌿 Botón (tu estilo verde translúcido) */
 .btn-like {
-  background: #ff4d6d;
-  color: white;
+  background: linear-gradient(45deg, rgba(51, 239, 139, 0.43), rgba(75, 239, 51, 0.43));
+  color: #0e0e0e;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 28px;
   border-radius: 30px;
   font-size: 18px;
   font-weight: bold;
-  transition: 0.2s ease;
+  transition: 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
 }
 
 .btn-like:hover {
-  background: #ff1e4d;
-  transform: scale(1.05);
+  transform: scale(1.08);
+  filter: brightness(1.15);
 }
+
+
+.heart-icon i {
+  font-size: 26px;
+  transition: 0.3s ease;
+}
+
+.heart-icon.liked i {
+  color: #ff2d55;
+  animation: heartbeat-strong 0.6s ease-in-out;
+}
+
+
+@keyframes heartbeat-strong {
+  0%   { transform: scale(1); }
+  20%  { transform: scale(1.5); }
+  40%  { transform: scale(0.9); }
+  60%  { transform: scale(1.4); }
+  80%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* 🔢 Contador */
+.like-counter {
+
+  color: #0e0e0e;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 18px;
+  min-width: 45px;
+  text-align: center;
+
+}
+
 
 
 /* ================================

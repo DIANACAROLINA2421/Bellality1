@@ -19,13 +19,25 @@
         <div>
             <span><hr class="o"></span>
         </div>
+
+
+
+
         <div class="likes-container d-flex justify-content-center align-items-center gap-3 my-4">
+
+            <p>Dale <i class="bi bi-hand-thumbs-up"></i> si te ha gustado mi página</p>
+
             <button class="btn-like" (click)="darLike()">
-                👍 Me gusta esta página
+        <span class="heart-icon" [class.liked]="likes > 0">
+            <i class="bi bi-heart-fill"></i>
+        </span>
+
+                <span class="like-counter">{{ likes }}</span>
             </button>
 
-            <span class="fw-bold fs-4">{{ likes }} Likes</span>
         </div>
+
+
 
         <!-- CUPÓN SOLO SI ESTÁ LOGEADO -->
         @if (isLogged) {
